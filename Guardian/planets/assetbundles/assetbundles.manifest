@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2459412249
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: guardian
+      Dependencies: {}
