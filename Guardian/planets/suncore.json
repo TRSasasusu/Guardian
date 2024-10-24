@@ -4,7 +4,7 @@
   "Base": {
     "gravityFallOff": "inverseSquared",
     "surfaceSize": 1000,
-    "surfaceGravity": 20
+    "surfaceGravity": 10
   },
   "Orbit": {
     "isStatic": true
@@ -24,5 +24,18 @@
       "g": 50,
       "b": 250
     }
+  },
+  "Props": {
+    "details": [
+      {
+        "assetBundle": "planets/assetbundles/guardian",
+        "path": "Assets/Guardian/Prefabs/SunOutsideSurface.prefab",
+        "keepLoaded": true
+      },
+      {
+        "assetBundle": "planets/assetbundles/guardian",
+        "path": "Assets/Guardian/Prefabs/SunCoreStructure.prefab"
+      }
+    ]
   }
 }

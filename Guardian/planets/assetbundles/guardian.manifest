@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2404749508
+CRC: 3349458618
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 725bb656ee7e378519e9d992daf9ce49
+    Hash: 8e0a2e58e0d8dd374423289d1bfd952b
   TypeTreeHash:
     serializedVersion: 2
     Hash: f022e502421d3d40f8898a0a0c86e2a2
@@ -35,5 +35,7 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Guardian/Prefabs/SunCoreStructure.prefab
+- Assets/Guardian/Prefabs/SunOutsideSurface.prefab
 - Assets/Guardian/Prefabs/SunStationEntrance.prefab
 Dependencies: []
