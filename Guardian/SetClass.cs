@@ -10,12 +10,22 @@ namespace Guardian {
     public class SetClass {
         const string MEMORY_SPACE_SUNSTATION_PATH = "SunStation_Body/Sector_SunStation/SunStationEntrance/smooth_sphere_inside";
         const string SUNSTATION_COLLIDER_PATH = "SunStation_Body/Sector_SunStation/Geometry_SunStation/SunStation_ControlModule_Geo/Structure_NOM_SunStation_ControlINT/CONTROL_INT_COLLIDE";
+        const string SUN_HEAT_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/HeatVolume";
+        const string SUN_INNER_DESTRUCTION_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/InnerDestructionVolume";
+        const string PLASMA_WARP_0_PATH = "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0";
+        readonly string[] PLASMA_WARP_0_POINT_PATHS = new string[] {
+            "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0/PlasmaWarp0Point0",
+            "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0/PlasmaWarp0Point1",
+            "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point2",
+            "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point3",
+        };
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
         }
 
         IEnumerator InitializeBody() {
+            Guardian.Log("start: set first memoryspace");
             while (true) {
                 yield return null;
                 var memorySpaceObj = GameObject.Find(MEMORY_SPACE_SUNSTATION_PATH);
@@ -35,6 +45,49 @@ namespace Guardian {
                     break;
                 }
             }
+            Guardian.Log("end: set first memoryspace");
+
+            Guardian.Log("start: find sun volumes");
+            GameObject sunHeatVolume;
+            while(true) {
+                sunHeatVolume = GameObject.Find(SUN_HEAT_VOLUME_PATH);
+                if(sunHeatVolume) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject sunInnerDestructionVolume;
+            while(true) {
+                sunInnerDestructionVolume = GameObject.Find(SUN_INNER_DESTRUCTION_VOLUME_PATH);
+                if(sunInnerDestructionVolume) {
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find sun volumes");
+
+            Guardian.Log("start: set warp 0");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_0_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(var path in PLASMA_WARP_0_POINT_PATHS) {
+                        while(true) {
+                            var point = GameObject.Find(path);
+                            if(point) {
+                                points.Add(point.transform);
+                                break;
+                            }
+                            yield return null;
+                        }
+                    }
+                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume });
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set warp 0");
         }
     }
 }

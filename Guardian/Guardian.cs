@@ -6,6 +6,8 @@ using System.Reflection;
 namespace Guardian {
     public class Guardian : ModBehaviour {
         public static Guardian Instance;
+        public static INewHorizons newHorizons;
+
         public SetClass _setClass;
 
         public static void Log(string text, MessageType messageType = MessageType.Message) {
@@ -22,7 +24,7 @@ namespace Guardian {
             ModHelper.Console.WriteLine($"{nameof(Guardian)} is loaded!", MessageType.Success);
 
             // Get the New Horizons API and load configs
-            var newHorizons = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
+            newHorizons = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
             newHorizons.LoadConfigs(this);
 
             // Example of accessing game code.
