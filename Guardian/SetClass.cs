@@ -12,6 +12,8 @@ namespace Guardian {
         const string SUNSTATION_COLLIDER_PATH = "SunStation_Body/Sector_SunStation/Geometry_SunStation/SunStation_ControlModule_Geo/Structure_NOM_SunStation_ControlINT/CONTROL_INT_COLLIDE";
         const string SUN_HEAT_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/HeatVolume";
         const string SUN_INNER_DESTRUCTION_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/InnerDestructionVolume";
+        const string SUN_DESTRUCTION_FLUID_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/ScaledVolumesRoot/DestructionFluidVolume";
+        const string SUN_GRAVITY_WELL_PATH = "Sun_Body/GravityWell_SUN";
         const string PLASMA_WARP_0_PATH = "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0";
         readonly string[] PLASMA_WARP_0_POINT_PATHS = new string[] {
             "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0/PlasmaWarp0Point0",
@@ -64,6 +66,22 @@ namespace Guardian {
                 }
                 yield return null;
             }
+            GameObject sunDestructionFluidVolume;
+            while(true) {
+                sunDestructionFluidVolume = GameObject.Find(SUN_DESTRUCTION_FLUID_VOLUME_PATH);
+                if(sunDestructionFluidVolume) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject sunGravityWell;
+            while(true) {
+                sunGravityWell = GameObject.Find(SUN_GRAVITY_WELL_PATH);
+                if(sunGravityWell) {
+                    break;
+                }
+                yield return null;
+            }
             Guardian.Log("end: find sun volumes");
 
             Guardian.Log("start: set warp 0");
@@ -82,7 +100,7 @@ namespace Guardian {
                             yield return null;
                         }
                     }
-                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume });
+                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell });
                     break;
                 }
                 yield return null;
