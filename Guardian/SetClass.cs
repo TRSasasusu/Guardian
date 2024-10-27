@@ -14,6 +14,7 @@ namespace Guardian {
         const string SUN_INNER_DESTRUCTION_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/InnerDestructionVolume";
         const string SUN_DESTRUCTION_FLUID_VOLUME_PATH = "Sun_Body/Sector_SUN/Volumes_SUN/ScaledVolumesRoot/DestructionFluidVolume";
         const string SUN_GRAVITY_WELL_PATH = "Sun_Body/GravityWell_SUN";
+        const string SUN_AUDIO_PATH = "Sun_Body/Sector_SUN/Audio_SUN";
         const string PLASMA_WARP_0_PATH = "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0";
         readonly string[] PLASMA_WARP_0_POINT_PATHS = new string[] {
             "SunStation_Body/Sector_SunStation/SunStationEntrance/PlasmaWarp0/PlasmaWarp0Point0",
@@ -21,6 +22,7 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point2",
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point3",
         };
+        const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -82,7 +84,26 @@ namespace Guardian {
                 }
                 yield return null;
             }
+            GameObject sunAudio;
+            while(true) {
+                sunAudio = GameObject.Find(SUN_AUDIO_PATH);
+                if(sunAudio) {
+                    break;
+                }
+                yield return null;
+            }
             Guardian.Log("end: find sun volumes");
+
+            Guardian.Log("start: setting on core sun");
+            while(true) {
+                var coreSunAudio = GameObject.Find(CORE_SUN_AUDIO_PATH);
+                if(coreSunAudio) {
+                    coreSunAudio.GetComponent<OWAudioSource>()._maxSourceVolume = 0.2f;
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: setting on core sun");
 
             Guardian.Log("start: set warp 0");
             while(true) {
@@ -100,7 +121,7 @@ namespace Guardian {
                             yield return null;
                         }
                     }
-                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell });
+                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio });
                     break;
                 }
                 yield return null;
