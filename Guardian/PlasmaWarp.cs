@@ -86,7 +86,7 @@ namespace Guardian {
             Guardian.Log("start player moving");
             for(var i = 0; i < _points.Count; i++) {
                 if (_warpIndices[i]) {
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.1f);
                     //other.position = _points[i].position;
                     owRigidbody.WarpToPositionRotation(_points[i].position, _points[i].rotation);
                     owRigidbody.SetVelocity(PointVelocity(_points[i]));

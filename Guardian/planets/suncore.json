@@ -3,7 +3,7 @@
   "name": "Sun Core",
   "Base": {
     "gravityFallOff": "inverseSquared",
-    "surfaceSize": 1200,
+    "surfaceSize": 1100,
     "surfaceGravity": 20
   },
   "Orbit": {
