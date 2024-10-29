@@ -23,6 +23,7 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point3",
         };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
+        const string MEMORY_CORE_CAUSE_SUPERNOVA = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -127,6 +128,19 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set warp 0");
+
+            Guardian.Log("start: set memory core cause supernova");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_CAUSE_SUPERNOVA);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.CAUSE_SUPERNOVA;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core cause supernova");
         }
     }
 }

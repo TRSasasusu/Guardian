@@ -9,6 +9,16 @@
   "Orbit": {
     "isStatic": true
   },
+  "Volumes": {
+    "zeroGravityVolumes": [
+      {
+        "radius": 40,
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "isRelativeToParent": true,
+        "rename": "memory_zerogravity"
+      }
+    ]
+  },
   "Star": {
     "stellarDeathType": "supernova",
     "size": 1000,
