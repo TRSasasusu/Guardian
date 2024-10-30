@@ -13,6 +13,17 @@
           "z": 0.5891
         }
       }
+    ],
+    "signals": [
+      {
+        "audio": "planets/assets/SunStationSignal.wav",
+        "frequency": "Radio",
+        "detectionRadius": 35,
+        "rename": "sunstation_signal",
+        "name": "Invaded Sun Station",
+        "parentPath": "Sector_SunStation/SunStationEntrance",
+        "isRelativeToParent": true
+      }
     ]
   }
 }

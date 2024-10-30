@@ -66,6 +66,9 @@ namespace Guardian {
                     _memoryCore.StopCoroutine(_memoryCore._memorySpaceAnimationCoroutine);
                     _memoryCore._memorySpaceAnimationCoroutine = null;
                 }
+                var memoryCoreSpheres = new List<Transform> { _memoryCore.transform.Find("memory_core_frame/smooth_sphere"), _memoryCore.transform.Find("memory_core_frame/smooth_sphere_inside") };
+                memoryCoreSpheres[0].gameObject.SetActive(true);
+                memoryCoreSpheres[1].gameObject.SetActive(true);
             }
         }
 
@@ -77,8 +80,8 @@ namespace Guardian {
                 Guardian.Log("start expansion in Animation");
                 while(true) {
                     yield return null;
-                    memoryCoreSpheres[0].transform.localScale += Vector3.one * Time.deltaTime * 10;
-                    memoryCoreSpheres[1].transform.localScale += Vector3.one * Time.deltaTime * 10;
+                    memoryCoreSpheres[0].transform.localScale += Vector3.one * Time.deltaTime * 30;
+                    memoryCoreSpheres[1].transform.localScale += Vector3.one * Time.deltaTime * 30;
                     if (memoryCoreSpheres[1].transform.localScale.x >= spaceSphere.transform.localScale.x) {
                         memoryCoreSpheres[0].transform.localScale = Vector3.one * 0.5f;
                         memoryCoreSpheres[1].transform.localScale = Vector3.one * 0.5f;
@@ -113,14 +116,14 @@ namespace Guardian {
                 sun.gameObject.SetActive(false);
                 sunExpanded.gameObject.SetActive(true);
                 robotCore.gameObject.SetActive(true);
-                for(var i = 7; i >= 2; --i) {
+                for(var i = 7; i >= 3; --i) {
                     yield return new WaitForSeconds(1);
                     robot.position = points[i].position;
                 }
                 sunExpanded.gameObject.SetActive(false);
                 supernovas[0].gameObject.SetActive(true);
                 yield return new WaitForSeconds(1);
-                robot.position = points[3].position;
+                robot.position = points[2].position;
                 supernovas[0].gameObject.SetActive(false);
                 supernovas[1].gameObject.SetActive(true);
                 yield return new WaitForSeconds(1);
