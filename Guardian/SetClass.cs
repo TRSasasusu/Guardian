@@ -23,6 +23,7 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point3",
         };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
+        const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
         const string MEMORY_CORE_CAUSE_SUPERNOVA = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
 
         public SetClass() {
@@ -100,6 +101,14 @@ namespace Guardian {
                 var coreSunAudio = GameObject.Find(CORE_SUN_AUDIO_PATH);
                 if(coreSunAudio) {
                     coreSunAudio.GetComponent<OWAudioSource>()._maxSourceVolume = 0.2f;
+                    break;
+                }
+                yield return null;
+            }
+            while(true) {
+                var coreHeatVolume = GameObject.Find(CORE_HEAT_VOLUME_PATH);
+                if(coreHeatVolume) {
+                    coreHeatVolume.GetComponent<SphereShape>().radius = 1;
                     break;
                 }
                 yield return null;

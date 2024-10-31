@@ -17,6 +17,20 @@
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
       }
+    ],
+    "oxygenVolumes": [
+      {
+        "radius": 10,
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/scaffoldCampfire",
+        "isRelativeToParent": true,
+        "treeVolume": false,
+        "rename": "oxygen_campfire",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0.6014
+        }
+      }
     ]
   },
   "Star": {
@@ -68,8 +82,12 @@
         "keepLoaded": true
       },
       {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+        //"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+        "path": "CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire",
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/scaffoldCampfire",
+        "removeChildren": [
+          "Props_HEA_Campfire"
+        ],
         "isRelativeToParent": true,
         "position": {
           "x": 0,
@@ -80,7 +98,8 @@
           "x": 90,
           "y": 0,
           "z": 0
-        }
+        },
+        "scale": 0.1
       }
     ]
   }
