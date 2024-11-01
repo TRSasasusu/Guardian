@@ -52,6 +52,9 @@
     <None Update="planets\assetbundles\guardian.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="planets\assets\Robot0.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="planets\assets\SunStationSignal.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

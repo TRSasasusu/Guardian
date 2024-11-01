@@ -91,7 +91,7 @@ namespace Guardian {
                     }
                 }
                 var robot = transform.Find("robot");
-                var robotCore = robot.Find("smooth_sphere");
+                var robotCore = robot.Find("HiddenObjs/smooth_sphere");
                 var points = new List<Transform>();
                 for(var i = 0; i <= 7; ++i) {
                     points.Add(transform.Find($"robot_point{i}"));

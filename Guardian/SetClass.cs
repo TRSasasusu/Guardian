@@ -24,7 +24,8 @@ namespace Guardian {
         };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
-        const string MEMORY_CORE_CAUSE_SUPERNOVA = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
+        const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
+        const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -140,7 +141,7 @@ namespace Guardian {
 
             Guardian.Log("start: set memory core cause supernova");
             while (true) {
-                var memoryCoreObj = GameObject.Find(MEMORY_CORE_CAUSE_SUPERNOVA);
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_CAUSE_SUPERNOVA_PATH);
                 if(memoryCoreObj) {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.CAUSE_SUPERNOVA;
@@ -150,6 +151,20 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set memory core cause supernova");
+
+            Guardian.Log("start: set plasmacloaking on hiddenhatch");
+            while(true) {
+                var hiddenHatchObj = GameObject.Find(HIDDEN_HATCH_PATH);
+                if(hiddenHatchObj) {
+                    hiddenHatchObj.transform.Find("PlasmaCloaking").gameObject.AddComponent<PlasmaCloaking>()._cloakedObj = hiddenHatchObj.transform.Find("HiddenObjs").gameObject;
+                    var hiddenHatchSpace = hiddenHatchObj.transform.Find("HiddenObjs/smooth_sphere_inside").gameObject.AddComponent<HiddenHatchSpace>();
+                    hiddenHatchSpace._disabledObjs = new List<GameObject> { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio };
+                    hiddenHatchSpace._blockEntrance = hiddenHatchObj.transform.Find("HiddenObjs/BlockEntrance").gameObject;
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set plasmacloaking on hiddenhatch");
         }
     }
 }

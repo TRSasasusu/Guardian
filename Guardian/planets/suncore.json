@@ -56,12 +56,16 @@
     "lightRadius": 2000,
     "curve": [
       {
-        "time": 8,
-        "value": 1.3
+        "time": 6,
+        "value": 1
       },
       {
-        "time": 15,
+        "time": 8,
         "value": 1.4
+      },
+      {
+        "time": 16,
+        "value": 1.45
       }
     ],
     "solarFlareSettings": {
@@ -100,6 +104,22 @@
           "z": 0
         },
         "scale": 0.1
+      }
+    ],
+    "signals": [
+      {
+        "audio": "planets/assets/Robot0.wav",
+        "frequency": "Robot",
+        "detectionRadius": 25,
+        "rename": "suncore_broken_robot_signal",
+        "name": "Broken Robot",
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/BrokenRobot/HiddenObjs/octagonal_cylinder",
+        "isRelativeToParent": true,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 1.3282
+        }
       }
     ]
   }
