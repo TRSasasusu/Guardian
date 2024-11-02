@@ -24,7 +24,9 @@ namespace Guardian {
         };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
+        const string CORE_ENERGY_STABILIZER_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer";
         const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
+        const string MEMORY_CORE_STABILIZE_WITH_SUNSTATION = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation";
         const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
         const string ROBOT_PATH = "Robot_Body";
         const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
@@ -118,6 +120,17 @@ namespace Guardian {
             }
             Guardian.Log("end: setting on core sun");
 
+            Guardian.Log("start: find energy stabilizer");
+            GameObject energyStabilizer;
+            while(true) {
+                energyStabilizer = GameObject.Find(CORE_ENERGY_STABILIZER_PATH);
+                if(energyStabilizer) {
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find energy stabilizer");
+
             Guardian.Log("start: set warp 0");
             while(true) {
                 var warpObj = GameObject.Find(PLASMA_WARP_0_PATH);
@@ -148,11 +161,39 @@ namespace Guardian {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.CAUSE_SUPERNOVA;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        energyStabilizer.transform.Find("scaffold (4)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (7)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (8)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (9)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (10)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (11)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (12)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (13)").gameObject,
+                        energyStabilizer.transform.Find("scaffold (14)").gameObject,
+                        energyStabilizer.transform.Find("upper_block").gameObject,
+                    };
                     break;
                 }
                 yield return null;
             }
             Guardian.Log("end: set memory core cause supernova");
+
+            Guardian.Log("start: set memory core stabilize with sunstation");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_STABILIZE_WITH_SUNSTATION);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.STABILIZE_WITH_SUN_STATION;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        energyStabilizer.transform.Find("upper_block").gameObject,
+                    };
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core stabilize with sunstation");
 
             Guardian.Log("start: find outside surface");
             GameObject sunOutsideSurface;

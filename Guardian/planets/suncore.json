@@ -12,8 +12,14 @@
   "Volumes": {
     "zeroGravityVolumes": [
       {
-        "radius": 40,
+        "radius": 80,
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "isRelativeToParent": true,
+        "rename": "memory_zerogravity"
+      },
+      {
+        "radius": 50,
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
       }

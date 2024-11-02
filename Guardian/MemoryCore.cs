@@ -11,15 +11,19 @@ namespace Guardian {
             CAUSE_SUPERNOVA,
             ENCOUNTER_SUPERNOVA,
             SUN_STATE_LOG,
+            STABILIZE_WITH_SUN_STATION,
         }
         public Style _style;
         public Coroutine _memorySpaceAnimationCoroutine;
+        public List<GameObject> _disabledObjs;
 
         MemorySpace _memorySpace;
 
         void Start () {
             _memorySpace = transform.Find("memory_space").gameObject.AddComponent<MemorySpace>();
             _memorySpace._memoryCore = this;
+            _memorySpace._objs = _disabledObjs;
+            _memorySpace.gameObject.SetActive(false);
         }
 
         //void OnCollisionEnter(Collision collision) {

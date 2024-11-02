@@ -69,6 +69,7 @@ namespace Guardian {
                 var memoryCoreSpheres = new List<Transform> { _memoryCore.transform.Find("memory_core_frame/smooth_sphere"), _memoryCore.transform.Find("memory_core_frame/smooth_sphere_inside") };
                 memoryCoreSpheres[0].gameObject.SetActive(true);
                 memoryCoreSpheres[1].gameObject.SetActive(true);
+                gameObject.SetActive(false);
             }
         }
 
@@ -76,20 +77,22 @@ namespace Guardian {
             Guardian.Log("start Animation");
             var memoryCoreSpheres = new List<Transform> { _memoryCore.transform.Find("memory_core_frame/smooth_sphere"), _memoryCore.transform.Find("memory_core_frame/smooth_sphere_inside") };
             var spaceSphere = transform.Find("smooth_sphere_inside");
-            if(_style == MemoryCore.Style.CAUSE_SUPERNOVA) {
-                Guardian.Log("start expansion in Animation");
-                while(true) {
-                    yield return null;
-                    memoryCoreSpheres[0].transform.localScale += Vector3.one * Time.deltaTime * 30;
-                    memoryCoreSpheres[1].transform.localScale += Vector3.one * Time.deltaTime * 30;
-                    if (memoryCoreSpheres[1].transform.localScale.x >= spaceSphere.transform.localScale.x) {
-                        memoryCoreSpheres[0].transform.localScale = Vector3.one * 0.5f;
-                        memoryCoreSpheres[1].transform.localScale = Vector3.one * 0.5f;
-                        memoryCoreSpheres[0].gameObject.SetActive(false);
-                        memoryCoreSpheres[1].gameObject.SetActive(false);
-                        break;
-                    }
+            Guardian.Log("start expansion in Animation");
+            while(true) {
+                yield return null;
+                memoryCoreSpheres[0].transform.localScale += Vector3.one * Time.deltaTime * 30;
+                memoryCoreSpheres[1].transform.localScale += Vector3.one * Time.deltaTime * 30;
+                if (memoryCoreSpheres[1].transform.localScale.x >= spaceSphere.transform.localScale.x) {
+                    memoryCoreSpheres[0].transform.localScale = Vector3.one * 0.5f;
+                    memoryCoreSpheres[1].transform.localScale = Vector3.one * 0.5f;
+                    memoryCoreSpheres[0].gameObject.SetActive(false);
+                    memoryCoreSpheres[1].gameObject.SetActive(false);
+                    break;
                 }
+            }
+            gameObject.SetActive(true);
+
+            if(_style == MemoryCore.Style.CAUSE_SUPERNOVA) {
                 var robot = transform.Find("robot");
                 var robotCore = robot.Find("HiddenObjs/smooth_sphere");
                 var points = new List<Transform>();
@@ -102,7 +105,9 @@ namespace Guardian {
                 for(var i = 0; i <= 4; ++i) {
                     supernovas.Add(transform.Find($"supernova{i}"));
                 }
+                var zeroGravity = transform.Find("memory_zerogravity");
 
+                zeroGravity.gameObject.SetActive(true);
                 spaceSphere.gameObject.SetActive(true);
                 sun.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1);
@@ -138,6 +143,39 @@ namespace Guardian {
                 robot.gameObject.SetActive(false);
                 supernovas[3].gameObject.SetActive(false);
                 supernovas[4].gameObject.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+
+                End();
+            }
+            else if(_style == MemoryCore.Style.STABILIZE_WITH_SUN_STATION) {
+                var robot = transform.Find("robot");
+                var points = new List<Transform>();
+                for(var i = 0; i <= 4; ++i) {
+                    points.Add(transform.Find($"robotpoint{i}"));
+                }
+                var sun = transform.Find("smooth_sphere");
+                var sunExpanded = transform.Find("smooth_sphere_expansion");
+                var sunstation = transform.Find("sun_station_entrance");
+                var zeroGravity = transform.Find("memory_zerogravity");
+
+                zeroGravity.gameObject.SetActive(true);
+                spaceSphere.gameObject.SetActive(true);
+                sunstation.gameObject.SetActive(true);
+                sun.gameObject.SetActive(true);
+                for(var j = 0; j < 3; ++j) {
+                    yield return new WaitForSeconds(1.5f);
+                    sun.gameObject.SetActive(false);
+                    sunExpanded.gameObject.SetActive(true);
+                    yield return new WaitForSeconds(1);
+                    robot.gameObject.SetActive(true);
+                    for(var i = 1; i <= 4; ++i) {
+                        yield return new WaitForSeconds(1);
+                        robot.position = points[i].position;
+                    }
+                    yield return new WaitForSeconds(1);
+                    sun.gameObject.SetActive(true);
+                    sunExpanded.gameObject.SetActive(false);
+                }
                 yield return new WaitForSeconds(1.5f);
 
                 End();
