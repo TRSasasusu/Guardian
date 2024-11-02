@@ -31,6 +31,26 @@
           "z": 0.6014
         }
       }
+    ],
+    "speedTrapVolumes": [
+      {
+        "radius": 200,
+        "parentPath": "Sector/SunCoreStructure/HiddenHatch",
+        "isRelativeToParent": true,
+        "rename": "speedtrap_hiddenhatch",
+        "speedLimit": 3
+      }
+    ],
+    "revealVolumes": [
+      {
+        "radius": 130,
+        "parentPath": "Sector/SunCoreStructure/HiddenHatch",
+        "isRelativeToParent": true,
+        "rename": "reveal_hiddenhatch",
+        "reveals": [
+          "guardian_hidden_hatch_enter"
+        ]
+      }
     ]
   },
   "Star": {
@@ -121,6 +141,20 @@
           "z": 1.3282
         }
       }
+    ],
+    "entryLocation": [
+      {
+        "id": "guardian_hidden_hatch",
+        "parentPath": "Sector/SunCoreStructure/HiddenHatch",
+        "isRelativeToParent": true,
+        "rename": "entrylocation_hiddenhatch"
+      }
     ]
+  },
+  "ShipLog": {
+    "mapMode": {
+      "invisibleWhenHidden": true
+    },
+    "xmlFile": "planets/shiplogs/coresun_shiplog.xml"
   }
 }

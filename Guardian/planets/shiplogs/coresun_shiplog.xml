@@ -1,0 +1,19 @@
+﻿<AstroObjectEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/shiplog_schema.xsd">
+  <ID>Sun Core</ID>
+  <Entry>
+    <ID>guardian_hidden_hatch</ID>
+    <Name>Hidden Hatch</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_hidden_hatch_enter</ID>
+      <Text>A hidden hatch used by the robot to enter and exit. This can have a HUD marker placed on it.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_core</ID>
+    <Name>Core</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <IsCuriosity/>
+  </Entry>
+</AstroObjectEntry>

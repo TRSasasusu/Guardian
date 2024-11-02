@@ -9,6 +9,7 @@ namespace Guardian {
     public class HiddenHatchSpace : MonoBehaviour {
         public List<GameObject> _disabledObjs;
         public GameObject _blockEntrance;
+        public GameObject _outerSurface;
 
         void OnTriggerEnter(Collider other) {
             if(Util.IsShip(other) || Util.IsPlayer(other)) {
@@ -21,6 +22,18 @@ namespace Guardian {
                 }
                 if(_blockEntrance) {
                     _blockEntrance.SetActive(true);
+                }
+                if(_outerSurface) {
+                    _outerSurface.GetComponent<Collider>().enabled = false;
+                }
+            }
+        }
+
+        void OnTriggerExit(Collider other) {
+            if (Util.IsShip(other) || Util.IsPlayer(other)) {
+                gameObject.SetActive(false);
+                if(_outerSurface) {
+                    _outerSurface.GetComponent<Collider>().enabled = true;
                 }
             }
         }

@@ -1,0 +1,6 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+    "ShipLogDictionary": {
+        "A hidden hatch used by the robot to enter and exit. This can have a HUD marker placed on it.": "ロボットが出入りに使用する隠されたハッチ。ここにはHUDマーカーをつけられる。"
+    }
+}

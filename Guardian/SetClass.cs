@@ -26,6 +26,8 @@ namespace Guardian {
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
         const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
         const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
+        const string ROBOT_PATH = "Robot_Body";
+        const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -152,19 +154,54 @@ namespace Guardian {
             }
             Guardian.Log("end: set memory core cause supernova");
 
-            Guardian.Log("start: set plasmacloaking on hiddenhatch");
+            Guardian.Log("start: find outside surface");
+            GameObject sunOutsideSurface;
             while(true) {
-                var hiddenHatchObj = GameObject.Find(HIDDEN_HATCH_PATH);
+                sunOutsideSurface = GameObject.Find(CORE_OUTSIDE_SURFACE_PATH);
+                if(sunOutsideSurface) {
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find outside surface");
+
+            Guardian.Log("start: set plasmacloaking on hiddenhatch");
+            GameObject hiddenHatchObj;
+            while(true) {
+                hiddenHatchObj = GameObject.Find(HIDDEN_HATCH_PATH);
                 if(hiddenHatchObj) {
                     hiddenHatchObj.transform.Find("PlasmaCloaking").gameObject.AddComponent<PlasmaCloaking>()._cloakedObj = hiddenHatchObj.transform.Find("HiddenObjs").gameObject;
                     var hiddenHatchSpace = hiddenHatchObj.transform.Find("HiddenObjs/smooth_sphere_inside").gameObject.AddComponent<HiddenHatchSpace>();
                     hiddenHatchSpace._disabledObjs = new List<GameObject> { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio };
                     hiddenHatchSpace._blockEntrance = hiddenHatchObj.transform.Find("HiddenObjs/BlockEntrance").gameObject;
+                    hiddenHatchSpace._outerSurface = sunOutsideSurface;
                     break;
                 }
                 yield return null;
             }
             Guardian.Log("end: set plasmacloaking on hiddenhatch");
+
+            Guardian.Log("start: set robot");
+            while(true) {
+                var robotObj = GameObject.Find(ROBOT_PATH);
+                if(robotObj) {
+                    GameObject dummyPos;
+                    while(true) {
+                        dummyPos = GameObject.Find("DummyInitialPosofRobot_Body");
+                        if(dummyPos) {
+                            break;
+                        }
+                        yield return null;
+                    }
+                    var robot = robotObj.AddComponent<Robot>();
+                    robot._hatchCylinder = hiddenHatchObj.transform.Find("HiddenObjs/cylinder_empty_thick");
+                    robot._dummyInitialPos = dummyPos.transform;
+                    robot.Initialize();
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set robot");
         }
     }
 }
