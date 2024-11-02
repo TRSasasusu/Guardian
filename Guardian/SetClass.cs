@@ -22,6 +22,13 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point2",
             "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp0Point3",
         };
+        const string PLASMA_WARP_1_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarp";
+        readonly string[] PLASMA_WARP_1_POINT_PATHS = new string[] {
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0 (1)",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0 (2)",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0 (3)",
+        };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
         const string CORE_ENERGY_STABILIZER_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer";
@@ -153,6 +160,29 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set warp 0");
+
+            Guardian.Log("start: set warp 1");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_1_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(var path in PLASMA_WARP_1_POINT_PATHS) {
+                        while(true) {
+                            var point = GameObject.Find(path);
+                            if(point) {
+                                points.Add(point.transform);
+                                break;
+                            }
+                            yield return null;
+                        }
+                    }
+                    warp.Initialize(points);
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set warp 1");
 
             Guardian.Log("start: set memory core cause supernova");
             while (true) {

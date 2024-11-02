@@ -45,6 +45,13 @@
         "isRelativeToParent": true,
         "rename": "speedtrap_hiddenhatch",
         "speedLimit": 3
+      },
+      {
+        "radius": 200,
+        "parentPath": "Sector/SunCoreStructure/HiddenHatch/scaffold (3)",
+        "isRelativeToParent": true,
+        "rename": "speedtrap_hiddenhatch",
+        "speedLimit": 1
       }
     ],
     "revealVolumes": [
@@ -162,5 +169,8 @@
       "invisibleWhenHidden": true
     },
     "xmlFile": "planets/shiplogs/coresun_shiplog.xml"
+  },
+  "ReferenceFrame": {
+    "enabled": false
   }
 }
