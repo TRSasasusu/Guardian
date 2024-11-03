@@ -56,10 +56,11 @@ namespace Guardian {
                 }
             }
             if(_memoryCore) {
-                foreach(var child in GetComponentsInChildren<Transform>()) {
-                    if(child.gameObject == gameObject) {
-                        continue;
-                    }
+                //foreach(var child in GetComponentsInChildren<Transform>()) {
+                foreach(Transform child in transform) {
+                    //if(child.gameObject == gameObject) {
+                    //    continue;
+                    //}
                     child.gameObject.SetActive(false);
                 }
                 if(_memoryCore._memorySpaceAnimationCoroutine != null) {
@@ -168,6 +169,7 @@ namespace Guardian {
                     sunExpanded.gameObject.SetActive(true);
                     yield return new WaitForSeconds(1);
                     robot.gameObject.SetActive(true);
+                    robot.position = points[0].position;
                     for(var i = 1; i <= 4; ++i) {
                         yield return new WaitForSeconds(1);
                         robot.position = points[i].position;
@@ -176,6 +178,40 @@ namespace Guardian {
                     sun.gameObject.SetActive(true);
                     sunExpanded.gameObject.SetActive(false);
                 }
+                yield return new WaitForSeconds(1.5f);
+
+                End();
+            }
+            else if(_style == MemoryCore.Style.HIDDEN_HATCH) {
+                var robot = transform.Find("robot");
+                var points = new List<Transform>();
+                for(var i = 0; i <= 5; ++i) {
+                    points.Add(transform.Find($"robotpoint{i}"));
+                }
+                var sun = transform.Find("smooth_sphere");
+                var hatch = transform.Find("cylinder_empty_thick");
+                var hatchShadow = transform.Find("smooth_sphere (1)");
+                var zeroGravity = transform.Find("memory_zerogravity");
+
+                zeroGravity.gameObject.SetActive(true);
+                spaceSphere.gameObject.SetActive(true);
+                sun.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2);
+                robot.gameObject.SetActive(true);
+                robot.position = points[0].position;
+                for(var i = 1; i <= 3; ++i) {
+                    yield return new WaitForSeconds(2);
+                    robot.position = points[i].position;
+                }
+                hatch.gameObject.SetActive(true);
+                hatchShadow.gameObject.SetActive(true);
+                for(var i = 4; i <= 5; ++i) {
+                    yield return new WaitForSeconds(2);
+                    robot.position = points[i].position;
+                }
+                yield return new WaitForSeconds(1);
+                hatch.gameObject.SetActive(false);
+                hatchShadow.gameObject.SetActive(false);
                 yield return new WaitForSeconds(1.5f);
 
                 End();
