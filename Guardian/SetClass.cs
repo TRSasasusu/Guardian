@@ -29,11 +29,21 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0 (2)",
             "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp1Point0 (3)",
         };
+        const string PLASMA_WARP_2_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp";
+        readonly string[] PLASMA_WARP_2_POINT_PATHS = new string[] {
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point0",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point1",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point2",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point3",
+            "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point4",
+        };
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
         const string CORE_ENERGY_STABILIZER_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer";
+        const string CORE_WAITING_AREA_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea";
         const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
-        const string MEMORY_CORE_STABILIZE_WITH_SUNSTATION = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation";
+        const string MEMORY_CORE_STABILIZE_WITH_SUNSTATION_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation";
+        const string MEMORY_CORE_HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch";
         const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
         const string ROBOT_PATH = "Robot_Body";
         const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
@@ -127,7 +137,7 @@ namespace Guardian {
             }
             Guardian.Log("end: setting on core sun");
 
-            Guardian.Log("start: find energy stabilizer");
+            Guardian.Log("start: find each area");
             GameObject energyStabilizer;
             while(true) {
                 energyStabilizer = GameObject.Find(CORE_ENERGY_STABILIZER_PATH);
@@ -136,7 +146,15 @@ namespace Guardian {
                 }
                 yield return null;
             }
-            Guardian.Log("end: find energy stabilizer");
+            GameObject waitingArea;
+            while(true) {
+                waitingArea = GameObject.Find(CORE_WAITING_AREA_PATH);
+                if(waitingArea) {
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find each area");
 
             Guardian.Log("start: set warp 0");
             while(true) {
@@ -184,6 +202,29 @@ namespace Guardian {
             }
             Guardian.Log("end: set warp 1");
 
+            Guardian.Log("start: set warp 2");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_2_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(var path in PLASMA_WARP_2_POINT_PATHS) {
+                        while(true) {
+                            var point = GameObject.Find(path);
+                            if(point) {
+                                points.Add(point.transform);
+                                break;
+                            }
+                            yield return null;
+                        }
+                    }
+                    warp.Initialize(points);
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set warp 2");
+
             Guardian.Log("start: set memory core cause supernova");
             while (true) {
                 var memoryCoreObj = GameObject.Find(MEMORY_CORE_CAUSE_SUPERNOVA_PATH);
@@ -211,7 +252,7 @@ namespace Guardian {
 
             Guardian.Log("start: set memory core stabilize with sunstation");
             while (true) {
-                var memoryCoreObj = GameObject.Find(MEMORY_CORE_STABILIZE_WITH_SUNSTATION);
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_STABILIZE_WITH_SUNSTATION_PATH);
                 if(memoryCoreObj) {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.STABILIZE_WITH_SUN_STATION;
@@ -224,6 +265,26 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set memory core stabilize with sunstation");
+
+            Guardian.Log("start: set memory core hidden hatch");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_HIDDEN_HATCH_PATH);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.HIDDEN_HATCH;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        waitingArea.transform.Find("scaffold (1)").gameObject,
+                        waitingArea.transform.Find("BrokenRobot").gameObject,
+                        waitingArea.transform.Find("BrokenRobot (1)").gameObject,
+                        waitingArea.transform.Find("BrokenRobot (2)").gameObject,
+                        waitingArea.transform.Find("PlasmaWarp").gameObject,
+                    };
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core hidden hatch");
 
             Guardian.Log("start: find outside surface");
             GameObject sunOutsideSurface;

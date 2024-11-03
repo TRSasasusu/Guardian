@@ -12,6 +12,7 @@ namespace Guardian {
             ENCOUNTER_SUPERNOVA,
             SUN_STATE_LOG,
             STABILIZE_WITH_SUN_STATION,
+            HIDDEN_HATCH,
         }
         public Style _style;
         public Coroutine _memorySpaceAnimationCoroutine;

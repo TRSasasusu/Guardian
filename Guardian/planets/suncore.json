@@ -22,6 +22,12 @@
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
+      },
+      {
+        "radius": 40,
+        "parentPath": "Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch/memory_space",
+        "isRelativeToParent": true,
+        "rename": "memory_zerogravity"
       }
     ],
     "oxygenVolumes": [
