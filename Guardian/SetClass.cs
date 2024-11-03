@@ -266,26 +266,6 @@ namespace Guardian {
             }
             Guardian.Log("end: set memory core stabilize with sunstation");
 
-            Guardian.Log("start: set memory core hidden hatch");
-            while (true) {
-                var memoryCoreObj = GameObject.Find(MEMORY_CORE_HIDDEN_HATCH_PATH);
-                if(memoryCoreObj) {
-                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
-                    memoryCore._style = MemoryCore.Style.HIDDEN_HATCH;
-                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
-                    memoryCore._disabledObjs = new List<GameObject> {
-                        waitingArea.transform.Find("scaffold (1)").gameObject,
-                        waitingArea.transform.Find("BrokenRobot").gameObject,
-                        waitingArea.transform.Find("BrokenRobot (1)").gameObject,
-                        waitingArea.transform.Find("BrokenRobot (2)").gameObject,
-                        waitingArea.transform.Find("PlasmaWarp").gameObject,
-                    };
-                    break;
-                }
-                yield return null;
-            }
-            Guardian.Log("end: set memory core hidden hatch");
-
             Guardian.Log("start: find outside surface");
             GameObject sunOutsideSurface;
             while(true) {
@@ -314,6 +294,7 @@ namespace Guardian {
             Guardian.Log("end: set plasmacloaking on hiddenhatch");
 
             Guardian.Log("start: set robot");
+            Robot robot;
             while(true) {
                 var robotObj = GameObject.Find(ROBOT_PATH);
                 if(robotObj) {
@@ -325,15 +306,37 @@ namespace Guardian {
                         }
                         yield return null;
                     }
-                    var robot = robotObj.AddComponent<Robot>();
+                    robot = robotObj.AddComponent<Robot>();
                     robot._hatchCylinder = hiddenHatchObj.transform.Find("HiddenObjs/cylinder_empty_thick");
                     robot._dummyInitialPos = dummyPos.transform;
+                    robot._coreSunSector = energyStabilizer.transform.parent.parent;
                     robot.Initialize();
                     break;
                 }
                 yield return null;
             }
             Guardian.Log("end: set robot");
+
+            Guardian.Log("start: set memory core hidden hatch");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_HIDDEN_HATCH_PATH);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.HIDDEN_HATCH;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        waitingArea.transform.Find("scaffold (1)").gameObject,
+                        waitingArea.transform.Find("BrokenRobot").gameObject,
+                        waitingArea.transform.Find("BrokenRobot (1)").gameObject,
+                        waitingArea.transform.Find("BrokenRobot (2)").gameObject,
+                        waitingArea.transform.Find("PlasmaWarp").gameObject,
+                        robot._robotLocal.transform.Find("HiddenObjs").gameObject,
+                    };
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core hidden hatch");
         }
     }
 }

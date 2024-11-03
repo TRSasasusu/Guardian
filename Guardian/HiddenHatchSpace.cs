@@ -26,6 +26,11 @@ namespace Guardian {
                 if(_outerSurface) {
                     _outerSurface.GetComponent<Collider>().enabled = false;
                 }
+
+                var shipBody = other.GetComponentInParent<ShipBody>();
+                if(shipBody) {
+                    shipBody.SetVelocity(Vector3.zero);
+                }
             }
         }
 
