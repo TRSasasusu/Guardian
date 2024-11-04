@@ -66,6 +66,8 @@ namespace Guardian {
         const string ENERGY_SPHERE_ITEM_PATH = "VolcanicMoon_Body/Sector_VM/robotonlantern Variant/HiddenObjs/smooth_sphere";
         const string COMET_PATH = "Comet_Body";
         const string CORE_OF_CORE_PATH = "CoreofCore_Body/Sector/Star";
+        const string REVEAL_CRUSH_INTERLOPER = "SunCore_Body/Sector/reveal_crushinterloper";
+        const string REVEAL_LOW_CORE = "SunCore_Body/Sector/reveal_lowcore";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -415,6 +417,7 @@ namespace Guardian {
                     memoryCore._style = MemoryCore.Style.CAUSE_SUPERNOVA;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/audio_causesupernova").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         energyStabilizer.transform.Find("scaffold (4)").gameObject,
                         energyStabilizer.transform.Find("scaffold (7)").gameObject,
@@ -441,6 +444,7 @@ namespace Guardian {
                     memoryCore._style = MemoryCore.Style.STABILIZE_WITH_SUN_STATION;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/audio_stabilizewithss").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         energyStabilizer.transform.Find("upper_block").gameObject,
                     };
@@ -509,6 +513,7 @@ namespace Guardian {
                     memoryCore._style = MemoryCore.Style.HIDDEN_HATCH;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/audio_hiddenhatch").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         waitingArea.transform.Find("scaffold (1)").gameObject,
                         waitingArea.transform.Find("BrokenRobot").gameObject,
@@ -531,6 +536,7 @@ namespace Guardian {
                     memoryCore._style = MemoryCore.Style.LANTERN_HIT;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/audio_lanternhit").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         coreUp.transform.Find("scaffold (33)").gameObject,
                     };
@@ -548,6 +554,7 @@ namespace Guardian {
                     memoryCore._style = MemoryCore.Style.FINAL_TH;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/audio_finalth").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         coreCenter.transform.Find("robot").gameObject,
                         coreOfCore,
@@ -581,6 +588,22 @@ namespace Guardian {
                         var comet = GameObject.Find(COMET_PATH);
                         if(comet) {
                             finalWarpController._comet = comet;
+                            break;
+                        }
+                        yield return null;
+                    }
+                    while(true) {
+                        var reveal = GameObject.Find(REVEAL_CRUSH_INTERLOPER);
+                        if(reveal) {
+                            finalWarpController._soundReveal = reveal;
+                            break;
+                        }
+                        yield return null;
+                    }
+                    while(true) {
+                        var reveal = GameObject.Find(REVEAL_LOW_CORE);
+                        if(reveal) {
+                            finalWarpController._seeReveal = reveal;
                             break;
                         }
                         yield return null;

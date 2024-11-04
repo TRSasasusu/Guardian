@@ -11,6 +11,8 @@ namespace Guardian {
         public PlasmaWarp _plasmaWarp;
         public GameObject _comet;
         public SphereItem _sphereItem;
+        public GameObject _soundReveal;
+        public GameObject _seeReveal;
 
         GameObject _coverBlock;
         GameObject _brokenSound;
@@ -28,6 +30,9 @@ namespace Guardian {
             _brokenSound.SetActive(false);
 
             StartCoroutine(ControlComet());
+
+            _soundReveal.SetActive(false);
+            _seeReveal.SetActive(false);
         }
 
         IEnumerator ControlComet() {
@@ -43,15 +48,17 @@ namespace Guardian {
             time = 0;
             if(_comet) {
                 _comet.transform.position = transform.position;
-                _comet.transform.eulerAngles = transform.eulerAngles + new Vector3(90, 0, 0);
+                _comet.transform.eulerAngles = transform.eulerAngles + new Vector3(0, 90, 0);
                 _brokenSound.SetActive(true);
                 _coverBlock.SetActive(false);
+                _soundReveal.SetActive(true);
+                _seeReveal.SetActive(true);
                 while(true) {
                     yield return null;
                     time += Time.deltaTime;
                     if(_comet) {
                         _comet.transform.position = transform.position;
-                        _comet.transform.eulerAngles = transform.eulerAngles + new Vector3(90, 0, 0);
+                        _comet.transform.eulerAngles = transform.eulerAngles + new Vector3(0, 90, 0);
                     }
                     if(time > 19 && _brokenSound.activeSelf) {
                         _brokenSound.SetActive(false);

@@ -14,5 +14,26 @@
         }
       }
     ]
+  },
+  "Volumes": {
+    "revealVolumes": [
+      {
+        "revealOn": "enter",
+        "revealFor": "both",
+        "reveals": [
+          "guardian_lantern_fact"
+        ],
+        "radius": 75,
+        "position": {
+          "x": -25.9639,
+          "y": -101.2028,
+          "z": 21.6336
+        }
+      }
+    ]
+  },
+  "ShipLog": {
+    "spriteFolder": "planets/shiplogs/sprites",
+    "xmlFile": "planets/shiplogs/lantern_shiplog.xml"
   }
 }

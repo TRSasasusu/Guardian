@@ -1,12 +1,152 @@
 ﻿<AstroObjectEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/shiplog_schema.xsd">
   <ID>Sun Core</ID>
   <Entry>
+    <ID>guardian_coresun</ID>
+    <Name>Core Sun</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_start_rumor</ID>
+      <Text>Apparently Slate had tweaked the signal scope before I left, and it was picking up some strange signal on some frequency.</Text>
+      <RumorName>Strange Signal</RumorName>
+    </RumorFact>
+    <ExploreFact>
+      <ID>guardian_coresun_fact</ID>
+      <Text>A huge structure <![CDATA[<color=orange>isolated</color>]]> within the sun that can be accessed from Sun Station. At its center is a blue sun that serves as its core, and the whole structure is a plasma shell.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_north</ID>
+    <Name>Provider</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_north_fact</ID>
+      <Text>A structure that connects the solar station to the plasma flame and the blue sun with plasma beams.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_north_memory_supernova</ID>
+      <Text>I saw the spatial memory at a location where there was an enclosed structure directly above.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_north_memory_ss</ID>
+      <Text>By ignoring physics with spatial memories, I have seen memories within the enclosed structure.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_north_signal</ID>
+      <Text>I got a signal from the broken robot.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_cause_supernova</ID>
+    <Name>Causing Supernova</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_cause_supernova_fact</ID>
+      <Text>I saw a memory of a robot entering the sun of a certain star system and then emerging a short time later with an energy sphere.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_cause_supernova_sun</ID>
+      <Text>The sun quickly came to the end of its life.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_stabilize_with_ss</ID>
+    <Name>Extending the Life of the Sun</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_stabilize_with_ss_fact</ID>
+      <Text>I saw a memory of the sun here being kept alive by using both an energy sphere brought from outside and Sun Station.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_waiting_area</ID>
+    <Name>Waiting Area</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_waiting_area_fact</ID>
+      <Text>The robots' waiting area. Most of the robots are broken.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_waiting_area_memory</ID>
+      <Text>I saw the spatial memory present in the center of the robots.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_waiting_area_signal</ID>
+      <Text>I got a signal of a working robot.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_memory_hidden_hatch</ID>
+    <Name>Presence of a Hidden Hatch</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_memory_hidden_hatch_fact</ID>
+      <Text>I saw a memory of a hatch on the sun of this star system that could be seen when approaching, and the robots using it to enter inside.</Text>
+    </ExploreFact>
+  </Entry>
+  
+  <Entry>
     <ID>guardian_hidden_hatch</ID>
     <Name>Hidden Hatch</Name>
     <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_hidden_hatch_rumor</ID>
+      <SourceID>guardian_memory_hidden_hatch</SourceID>
+      <Text>The sun in this system has a hatch that is invisible until you get close, and the robots still use it.</Text>
+      <RumorName>Hidden Hatch</RumorName>
+    </RumorFact>
     <ExploreFact>
       <ID>guardian_hidden_hatch_enter</ID>
       <Text>A hidden hatch used by the robot to enter and exit. This can have a HUD marker placed on it.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_core_up</ID>
+    <Name>Structures within the Core</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_core_up_rumor</ID>
+      <SourceID>guardian_north</SourceID>
+      <Text>The structure sinks into the blue sun in the early hours.</Text>
+      <RumorName>Under the Structure</RumorName>
+    </RumorFact>
+    <ExploreFact>
+      <ID>guardian_core_up_memory</ID>
+      <Text>After crossing the plasma beam inside the blue structure, I saw a spatial memory.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_lantern_hit</ID>
+    <Name>The Robot's Fall</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
+      <ID>guardian_lantern_hit_fact</ID>
+      <Text>I saw a memory of a robot somewhere in this system being hit by a volcanic bomb and crashing.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_core_crush</ID>
+    <Name>Incomplete Plasma Beam</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_core_crush_rumor</ID>
+      <Text>Somewhere I heard the sound of Interloper crashing.</Text>
+      <RumorName>Interloper Crashing</RumorName>
+    </RumorFact>
+    <ExploreFact>
+      <ID>guardian_core_crush_interloper</ID>
+      <Text>Several platforms can be seen inside the narrow gap created when Interloper crashes into them.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_core_crush_fact</ID>
+      <Text>There is a plasma beam that does not have enough power. It seems that if I bring a small, handheld energy ball from somewhere, it will work.</Text>
     </ExploreFact>
   </Entry>
 
@@ -15,5 +155,13 @@
     <Name>Core</Name>
     <Curiosity>guardian_core</Curiosity>
     <IsCuriosity/>
+    <ExploreFact>
+      <ID>guardian_core_fact</ID>
+      <Text>I met the robot's main body! It has been protecting the true Sun's core until it reaches its limit.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_core_memory</ID>
+      <Text>However, as a result, they met our ancestors and extended the life of our sun from then on. Thus, our star system survived until the final day of the universe. This is the end of this mod. Thank you for playing!</Text>
+    </ExploreFact>
   </Entry>
 </AstroObjectEntry>

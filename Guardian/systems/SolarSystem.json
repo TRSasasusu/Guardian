@@ -1,10 +1,96 @@
 {
   "$schema": "https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/star_system_schema.json",
+  "entryPositions": [
+    {
+      "id": "guardian_coresun",
+      "position": {
+        "x": -120,
+        "y": 500
+      }
+    },
+    {
+      "id": "guardian_north",
+      "position": {
+        "x": -230,
+        "y": 710
+      }
+    },
+    {
+      "id": "guardian_cause_supernova",
+      "position": {
+        "x": -330,
+        "y": 660
+      }
+    },
+    {
+      "id": "guardian_stabilize_with_ss",
+      "position": {
+        "x": -330,
+        "y": 810
+      }
+    },
+    {
+      "id": "guardian_waiting_area",
+      "position": {
+        "x": -230,
+        "y": 350
+      }
+    },
+    {
+      "id": "guardian_memory_hidden_hatch",
+      "position": {
+        "x": -330,
+        "y": 310
+      }
+    },
+    {
+      "id": "guardian_hidden_hatch",
+      "position": {
+        "x": -200,
+        "y": 220
+      }
+    },
+    {
+      "id": "guardian_core_up",
+      "position": {
+        "x": -480,
+        "y": 600
+      }
+    },
+    {
+      "id": "guardian_lantern_hit",
+      "position": {
+        "x": -580,
+        "y": 560
+      }
+    },
+    {
+      "id": "guardian_lantern",
+      "position": {
+        "x": -700,
+        "y": 550
+      }
+    },
+    {
+      "id": "guardian_core_crush",
+      "position": {
+        "x": -480,
+        "y": 180
+      }
+    },
+    {
+      "id": "guardian_core",
+      "position": {
+        "x": -250,
+        "y": 300
+      }
+    }
+  ],
   "curiosities": [
     {
       "color": {
         "r": 210,
-        "g": 90,
+        "g": 110,
         "b": 10,
         "a": 255
       },
@@ -16,5 +102,8 @@
       },
       "id": "guardian_core"
     }
+  ],
+  "initialReveal": [
+    "guardian_start_rumor"
   ]
 }

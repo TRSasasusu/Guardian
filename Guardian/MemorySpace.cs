@@ -93,6 +93,9 @@ namespace Guardian {
             }
             gameObject.SetActive(true);
 
+            var reveal = transform.Find("reveal_memory");
+            reveal.gameObject.SetActive(true);
+
             if(_style == MemoryCore.Style.CAUSE_SUPERNOVA) {
                 var robot = transform.Find("robot");
                 var robotCore = robot.Find("HiddenObjs/smooth_sphere");

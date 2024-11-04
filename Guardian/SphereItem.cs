@@ -26,7 +26,7 @@ namespace Guardian {
                 transform.localScale = Vector3.one * 0.1f;
             }
             else {
-                transform.localScale = Vector3.one * 0.1f;
+                transform.localScale = Vector3.one;
             }
         }
     }

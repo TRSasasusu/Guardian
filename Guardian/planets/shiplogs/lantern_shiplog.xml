@@ -1,0 +1,18 @@
+﻿<AstroObjectEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/shiplog_schema.xsd">
+  <ID>VolcanicMoon</ID>
+  <Entry>
+    <ID>guardian_lantern</ID>
+    <Name>The Crashed Robot</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_lantern_rumor</ID>
+      <SourceID>guardian_lantern_hit</SourceID>
+      <Text>The robot crashed near a volcano.</Text>
+      <RumorName>The Crashed Robot</RumorName>
+    </RumorFact>
+    <ExploreFact>
+      <ID>guardian_lantern_fact</ID>
+      <Text>I found the crashed robot in Hollow's Lantern. Since this place does not have as much energy as the sun, there was an energy sphere there that was small enough to be picked up.</Text>
+    </ExploreFact>
+  </Entry>
+</AstroObjectEntry>
