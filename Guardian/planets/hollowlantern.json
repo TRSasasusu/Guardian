@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/body_schema.json",
+  "name": "VolcanicMoon",
+  "Props": {
+    "details": [
+      {
+        "assetBundle": "planets/assetbundles/guardian",
+        "path": "Assets/Guardian/Prefabs/robotonlantern Variant.prefab",
+        "keepLoaded": true,
+        "position": {
+          "x": -25.9639,
+          "y": -101.2028,
+          "z": 21.6336
+        }
+      }
+    ]
+  }
+}

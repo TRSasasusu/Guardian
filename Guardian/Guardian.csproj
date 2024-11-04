@@ -61,6 +61,9 @@
     <None Update="planets\assets\CoreUp.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="planets\assets\FinalTH.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="planets\assets\HiddenHatch.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -34,6 +34,12 @@
         "parentPath": "Sector/SunCoreStructure/CoreUp/MemoryCoreLanternHit/memory_space",
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
+      },
+      {
+        "radius": 100,
+        "parentPath": "Sector/SunCoreStructure/CoreCenter/MemoryCore/memory_space",
+        "isRelativeToParent": true,
+        "rename": "memory_zerogravity"
       }
     ],
     "oxygenVolumes": [
@@ -43,6 +49,18 @@
         "isRelativeToParent": true,
         "treeVolume": false,
         "rename": "oxygen_campfire",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0.6014
+        }
+      },
+      {
+        "radius": 10,
+        "parentPath": "Sector/SunCoreStructure/CoreUp/scaffold (33)",
+        "isRelativeToParent": true,
+        "treeVolume": false,
+        "rename": "oxygen_coreup",
         "position": {
           "x": 0,
           "y": 0,
@@ -82,7 +100,7 @@
         "audio": "planets/assets/CauseSupernova.wav",
         "track": "music",
         "radius": 80,
-        "volume": 0.8,
+        "volume": 0.7,
         "priority": 1,
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
         "isRelativeToParent": true,
@@ -92,7 +110,7 @@
         "audio": "planets/assets/StabilizeWithSS.wav",
         "track": "music",
         "radius": 50,
-        "volume": 0.8,
+        "volume": 0.7,
         "priority": 1,
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
@@ -102,7 +120,7 @@
         "audio": "planets/assets/HiddenHatch.wav",
         "track": "music",
         "radius": 40,
-        "volume": 0.8,
+        "volume": 0.7,
         "priority": 1,
         "parentPath": "Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch/memory_space",
         "isRelativeToParent": true,
@@ -112,17 +130,27 @@
         "audio": "planets/assets/LanternHit.wav",
         "track": "music",
         "radius": 50,
-        "volume": 0.8,
+        "volume": 0.7,
         "priority": 2,
         "parentPath": "Sector/SunCoreStructure/CoreUp/MemoryCoreLanternHit/memory_space",
         "isRelativeToParent": true,
         "rename": "audio_lanternhit"
       },
       {
+        "audio": "planets/assets/FinalTH.wav",
+        "track": "music",
+        "radius": 100,
+        "volume": 0.7,
+        "priority": 2,
+        "parentPath": "Sector/SunCoreStructure/CoreCenter/MemoryCore/memory_space",
+        "isRelativeToParent": true,
+        "rename": "audio_finalth"
+      },
+      {
         "audio": "planets/assets/CoreUp.wav",
         "track": "music",
         "radius": 400,
-        "volume": 0.6,
+        "volume": 0.7,
         "priority": 1,
         "parentPath": "Sector/SunCoreStructure/CoreUp",
         "isRelativeToParent": true,
@@ -132,6 +160,16 @@
           "z": 145
         },
         "rename": "audio_coreup"
+      },
+      {
+        "audio": "planets/assets/BrokenSound.wav",
+        "track": "music",
+        "radius": 1500,
+        "volume": 0.8,
+        "priority": 1,
+        "parentPath": "Sector/SunCoreStructure",
+        "isRelativeToParent": true,
+        "rename": "audio_brokensound"
       }
     ]
   },
@@ -171,7 +209,7 @@
       },
       {
         "time": 16,
-        "value": 1.48
+        "value": 1.38
       }
     ],
     "solarFlareSettings": {

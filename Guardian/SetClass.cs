@@ -42,20 +42,30 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/CoreUp/PlasmaWarp3Point0",
         };
         const string PLASMA_WARP_COREUP_ESCAPE_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp/PlasmaWarpEscape";
+        const string PLASMA_WARP_CORE_FINAL_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreCrush/PlasmaWarpFinal";
+        const string PLASMA_WARP_WAIT_TO_CRUSH_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarpLocal";
+        const string PLASMA_WARP_HIDDEN_TO_WAIT_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch/PlasmaWarpLocal";
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
         const string CORE_DESTRUCTION_VOLUME_PATH = "SunCore_Body/Sector/Star/DestructionFluidVolume";
         const string CORE_PLANET_DESTRUCTION_VOLUME_PATH = "SunCore_Body/Sector/Star/PlanetDestructionVolume";
+        const string CORE_GRAVITY_WELL_PATH = "SunCore_Body/GravityWell";
         const string CORE_ENERGY_STABILIZER_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer";
         const string CORE_WAITING_AREA_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea";
         const string CORE_CORE_UP_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp";
+        const string CORE_CORE_CENTER_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreCenter";
+        const string CORE_CORE_CRUSH_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreCrush";
         const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
         const string MEMORY_CORE_STABILIZE_WITH_SUNSTATION_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation";
         const string MEMORY_CORE_HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch";
         const string MEMORY_CORE_LANTERN_HIT_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp/MemoryCoreLanternHit";
+        const string MEMORY_CORE_FINAL_TH_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreCenter/MemoryCore";
         const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
         const string ROBOT_PATH = "Robot_Body";
         const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
+        const string ENERGY_SPHERE_ITEM_PATH = "VolcanicMoon_Body/Sector_VM/robotonlantern Variant/HiddenObjs/smooth_sphere";
+        const string COMET_PATH = "Comet_Body";
+        const string CORE_OF_CORE_PATH = "CoreofCore_Body/Sector/Star";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -161,6 +171,14 @@ namespace Guardian {
                 }
                 yield return null;
             }
+            GameObject coreGravityWell;
+            while(true) {
+                coreGravityWell = GameObject.Find(CORE_GRAVITY_WELL_PATH);
+                if(coreGravityWell) {
+                    break;
+                }
+                yield return null;
+            }
             Guardian.Log("end: setting on core sun");
 
             Guardian.Log("start: find each area");
@@ -184,6 +202,22 @@ namespace Guardian {
             while(true) {
                 coreUp = GameObject.Find(CORE_CORE_UP_PATH);
                 if(coreUp) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject coreCenter;
+            while(true) {
+                coreCenter = GameObject.Find(CORE_CORE_CENTER_PATH);
+                if(coreCenter) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject coreOfCore;
+            while(true) {
+                coreOfCore = GameObject.Find(CORE_OF_CORE_PATH);
+                if(coreOfCore) {
                     break;
                 }
                 yield return null;
@@ -314,8 +348,64 @@ namespace Guardian {
                     warp.Initialize(points, null, null, new GameObject[] { coreHeatVolume, coreDestructionVolume, corePlanetDestructionVolume });
                     break;
                 }
+                yield return null;
             }
             Guardian.Log("end: coreup escape warp");
+
+            Guardian.Log("start: core final warp");
+            PlasmaWarp finalWarp;
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_CORE_FINAL_PATH);
+                if(warpObj) {
+                    finalWarp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(Transform childOfWarp in finalWarp.transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
+                        if(!childOfWarp.name.Contains("point")) {
+                            continue;
+                        }
+                        points.Add(childOfWarp);
+                    }
+                    finalWarp.Initialize(points, null, new GameObject[] { coreHeatVolume, coreDestructionVolume, corePlanetDestructionVolume, coreGravityWell });
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: core final warp");
+
+            Guardian.Log("start: additional warps");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_HIDDEN_TO_WAIT_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(Transform childOfWarp in warp.transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
+                        if(!childOfWarp.name.Contains("point")) {
+                            continue;
+                        }
+                        points.Add(childOfWarp);
+                    }
+                    warp.Initialize(points);
+                    break;
+                }
+                yield return null;
+            }
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_WAIT_TO_CRUSH_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(Transform childOfWarp in warp.transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
+                        if(!childOfWarp.name.Contains("point")) {
+                            continue;
+                        }
+                        points.Add(childOfWarp);
+                    }
+                    warp.Initialize(points);
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: additional warps");
 
             Guardian.Log("start: set memory core cause supernova");
             while (true) {
@@ -449,6 +539,58 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set memory core lantern hit");
+
+            Guardian.Log("start: set memory core final th");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_FINAL_TH_PATH);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.FINAL_TH;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/audio_finalth").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        coreCenter.transform.Find("robot").gameObject,
+                        coreOfCore,
+                    };
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core final th");
+
+            Guardian.Log("start: set energy sphere item");
+            SphereItem energySphereItem;
+            while(true) {
+                var energySphereObj = GameObject.Find(ENERGY_SPHERE_ITEM_PATH);
+                if(energySphereObj) {
+                    energySphereItem = energySphereObj.AddComponent<SphereItem>();
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set energy sphere item");
+
+            Guardian.Log("start: set core crush");
+            while(true) {
+                var coreCrush = GameObject.Find(CORE_CORE_CRUSH_PATH);
+                if(coreCrush) {
+                    var finalWarpController = coreCrush.AddComponent<FinalWarpController>();
+                    finalWarpController._plasmaWarp = finalWarp;
+                    finalWarpController._sphereItem = energySphereItem;
+                    while(true) {
+                        var comet = GameObject.Find(COMET_PATH);
+                        if(comet) {
+                            finalWarpController._comet = comet;
+                            break;
+                        }
+                        yield return null;
+                    }
+                    finalWarpController.Initialize();
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set core crush");
         }
     }
 }

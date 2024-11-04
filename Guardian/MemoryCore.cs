@@ -14,6 +14,7 @@ namespace Guardian {
             STABILIZE_WITH_SUN_STATION,
             HIDDEN_HATCH,
             LANTERN_HIT,
+            FINAL_TH,
         }
         public Style _style;
         public Coroutine _memorySpaceAnimationCoroutine;

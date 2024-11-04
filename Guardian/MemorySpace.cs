@@ -273,6 +273,120 @@ namespace Guardian {
 
                 End();
             }
+            else if(_style == MemoryCore.Style.FINAL_TH) {
+                var robot = transform.Find("robot");
+                var points = new List<Transform>();
+                for(var i = 0; i <= 12; ++i) {
+                    points.Add(transform.Find($"robotpoint{i}"));
+                }
+                var aftersupernovaPoints = new List<Transform>();
+                for(var i = 0; i <= 9; ++i) {
+                    aftersupernovaPoints.Add(transform.Find($"afternova_robotpoint{i}"));
+                }
+                var thPoints = new List<Transform>();
+                for(var i = 0; i <= 21; ++i) {
+                    thPoints.Add(transform.Find($"th_robotpoint{i}"));
+                }
+                var sunExpanded = transform.Find("smooth_sphere_expansion");
+                var supernovas = new List<Transform>();
+                for(var i = 0; i <= 6; ++i) {
+                    supernovas.Add(transform.Find($"supernova{i}"));
+                }
+                var makers = new List<Transform> {
+                    transform.Find("Sphere"),
+                    transform.Find("memory_maker"),
+                    transform.Find("memory_maker (1)"),
+                    transform.Find("memory_maker (2)"),
+                    transform.Find("memory_maker (3)"),
+                    transform.Find("memory_wrench"),
+                };
+                var afterSupernovas = new List<Transform>();
+                for(var i = 0; i <= 2; ++i) {
+                    afterSupernovas.Add(transform.Find($"afternova{i}"));
+                }
+                var ths = new List<Transform> {
+                    transform.Find("TH"),
+                    transform.Find("initialhearthian"),
+                    transform.Find("initialhearthian (1)"),
+                    transform.Find("initialhearthian (2)"),
+                    transform.Find("initialhearthian (3)"),
+                };
+                var thSunExpansion = transform.Find("th_sun_expansion");
+                var thSun = transform.Find("th_sun");
+                var zeroGravity = transform.Find("memory_zerogravity");
+                var audio = transform.Find("audio_finalth");
+
+                zeroGravity.gameObject.SetActive(true);
+                spaceSphere.gameObject.SetActive(true);
+                audio.gameObject.SetActive(true);
+                sunExpanded.gameObject.SetActive(true);
+                robot.gameObject.SetActive(true);
+                foreach(var maker in makers) {
+                    maker.gameObject.SetActive(true);
+                }
+                robot.position = points[0].position;
+                robot.rotation = points[0].rotation;
+
+                for(var i = 1; i <= 5; ++i) {
+                    yield return new WaitForSeconds(1);
+                    robot.position = points[i].position;
+                    robot.rotation = points[i].rotation;
+                }
+                sunExpanded.gameObject.SetActive(false);
+                supernovas[0].gameObject.SetActive(true);
+                for(var i = 6; i <= 11; ++i) {
+                    yield return new WaitForSeconds(1);
+                    robot.position = points[i].position;
+                    robot.rotation = points[i].rotation;
+                    //if(i < 12) {
+                        supernovas[i - 6].gameObject.SetActive(false);
+                        supernovas[i - 5].gameObject.SetActive(true);
+                    //}
+                }
+                yield return new WaitForSeconds(1);
+
+                robot.position = aftersupernovaPoints[0].position;
+                robot.rotation = aftersupernovaPoints[0].rotation;
+                supernovas[6].gameObject.SetActive(false);
+                foreach(var maker in makers) {
+                    maker.gameObject.SetActive(false);
+                }
+                afterSupernovas[0].gameObject.SetActive(true);
+                yield return new WaitForSeconds(1);
+
+                for(var i = 1; i <= 2; ++i) {
+                    afterSupernovas[i].gameObject.SetActive(true);
+                    afterSupernovas[i - 1].gameObject.SetActive(false);
+                    yield return new WaitForSeconds(1);
+                }
+                afterSupernovas[2].gameObject.SetActive(false);
+                yield return new WaitForSeconds(1.5f);
+
+                for(var i = 1; i <= 9; ++i) {
+                    robot.position = aftersupernovaPoints[i].position;
+                    robot.rotation = aftersupernovaPoints[i].rotation;
+                    yield return new WaitForSeconds(1);
+                }
+
+                robot.position = thPoints[0].position;
+                robot.rotation = thPoints[0].rotation;
+                foreach(var th in ths) {
+                    th.gameObject.SetActive(true);
+                }
+                thSunExpansion.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+
+                for(var i = 1; i <= 21; ++i) {
+                    robot.position = thPoints[i].position;
+                    robot.rotation = thPoints[i].rotation;
+                    yield return new WaitForSeconds(1);
+                }
+                thSunExpansion.gameObject.SetActive(false);
+                thSun.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+
+                End();
+            }
         }
     }
 }

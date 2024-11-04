@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/body_schema.json",
+  "name": "Core of Core",
+  "Base": {
+    "surfaceGravity": 0
+  },
+  "Orbit": {
+    "isStatic": true
+  },
+  "Star": {
+    "stellarDeathType": "none",
+    "size": 10,
+    "lifespan": 22,
+    "solarLuminosity": 1,
+    "tint": {
+      "r": 255,
+      "g": 255,
+      "b": 255
+    },
+    "lightTint": {
+      "r": 255,
+      "g": 255,
+      "b": 255
+    },
+    "endTint": {
+      "r": 255,
+      "g": 255,
+      "b": 255
+    },
+    "lightRadius": 50
+  },
+  "ReferenceFrame": {
+    "enabled": false
+  },
+  "removeChildren": [
+    "Sector/Star/DestructionFluidVolume",
+    "Sector/Star/PlanetDestructionVolume",
+    "Sector/Star/HeatVolume"
+  ]
+}

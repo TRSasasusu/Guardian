@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1336011390
+CRC: 214839310
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c593225323f4a0d900a2a34466536c36
+    Hash: 47ace07f4f41f45635604678f97af399
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 92094509335d915a3dc0623f39c7c1de
+    Hash: 0f32b200d49c0a2e3228f00f573a05f6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -39,6 +39,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 135
   Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
 - Class: 199
@@ -47,6 +49,7 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Guardian/Prefabs/SunCoreStructure.prefab
 - Assets/Guardian/Prefabs/robot.prefab
+- Assets/Guardian/Prefabs/robotonlantern Variant.prefab
 - Assets/Guardian/Prefabs/SunOutsideSurface.prefab
 - Assets/Guardian/Prefabs/SunStationEntrance.prefab
 Dependencies: []

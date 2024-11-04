@@ -17,6 +17,8 @@ namespace Guardian {
         Transform _core;
         float _speed;
 
+        public bool _inactive;
+
         public void Initialize(IEnumerable<Transform> points, IEnumerable<int> warpIndices = null, IEnumerable<GameObject> disabledObjs = null, IEnumerable<GameObject> enabledObjs = null) {
             _core = transform.Find("Core");
 
@@ -58,6 +60,9 @@ namespace Guardian {
         }
 
         void OnTriggerEnter(Collider other) {
+            if(_inactive) {
+                return;
+            }
             if(other.gameObject == Locator._playerBody.gameObject) {
                 Guardian.Log("player enters plasmawarp");
                 StartCoroutine(MovePlayer(other.transform));
