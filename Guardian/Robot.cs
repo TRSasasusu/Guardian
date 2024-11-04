@@ -11,7 +11,7 @@ namespace Guardian {
         public Transform _hatchCylinder;
         public float _initialDistance = 20000;
         //public float _speed = 2;
-        public float _timeReachingHatch = 420;
+        public float _timeReachingHatch = 540;
         public Transform _coreSunSector;
 
         float _currentTimeReachingHatch;

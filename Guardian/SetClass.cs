@@ -37,13 +37,22 @@ namespace Guardian {
             "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point3",
             "SunCore_Body/Sector/SunCoreStructure/WaitingArea/PlasmaWarp2Point4",
         };
+        const string PLASMA_WARP_3_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/PlasmaWarpToCoreUp";
+        readonly string[] PLASMA_WARP_3_POINT_PATHS = new string[] {
+            "SunCore_Body/Sector/SunCoreStructure/CoreUp/PlasmaWarp3Point0",
+        };
+        const string PLASMA_WARP_COREUP_ESCAPE_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp/PlasmaWarpEscape";
         const string CORE_SUN_AUDIO_PATH = "SunCore_Body/Sector/Star/Audio_Star/SurfaceAudio_Sun";
         const string CORE_HEAT_VOLUME_PATH = "SunCore_Body/Sector/Star/HeatVolume";
+        const string CORE_DESTRUCTION_VOLUME_PATH = "SunCore_Body/Sector/Star/DestructionFluidVolume";
+        const string CORE_PLANET_DESTRUCTION_VOLUME_PATH = "SunCore_Body/Sector/Star/PlanetDestructionVolume";
         const string CORE_ENERGY_STABILIZER_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer";
         const string CORE_WAITING_AREA_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea";
+        const string CORE_CORE_UP_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp";
         const string MEMORY_CORE_CAUSE_SUPERNOVA_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova";
         const string MEMORY_CORE_STABILIZE_WITH_SUNSTATION_PATH = "SunCore_Body/Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation";
         const string MEMORY_CORE_HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch";
+        const string MEMORY_CORE_LANTERN_HIT_PATH = "SunCore_Body/Sector/SunCoreStructure/CoreUp/MemoryCoreLanternHit";
         const string HIDDEN_HATCH_PATH = "SunCore_Body/Sector/SunCoreStructure/HiddenHatch";
         const string ROBOT_PATH = "Robot_Body";
         const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
@@ -127,10 +136,27 @@ namespace Guardian {
                 }
                 yield return null;
             }
+            GameObject coreHeatVolume;
             while(true) {
-                var coreHeatVolume = GameObject.Find(CORE_HEAT_VOLUME_PATH);
+                coreHeatVolume = GameObject.Find(CORE_HEAT_VOLUME_PATH);
                 if(coreHeatVolume) {
                     coreHeatVolume.GetComponent<SphereShape>().radius = 1;
+                    break;
+                }
+                yield return null;
+            }
+            GameObject coreDestructionVolume;
+            while(true) {
+                coreDestructionVolume = GameObject.Find(CORE_DESTRUCTION_VOLUME_PATH);
+                if(coreDestructionVolume) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject corePlanetDestructionVolume;
+            while(true) {
+                corePlanetDestructionVolume = GameObject.Find(CORE_PLANET_DESTRUCTION_VOLUME_PATH);
+                if(corePlanetDestructionVolume) {
                     break;
                 }
                 yield return null;
@@ -150,6 +176,14 @@ namespace Guardian {
             while(true) {
                 waitingArea = GameObject.Find(CORE_WAITING_AREA_PATH);
                 if(waitingArea) {
+                    break;
+                }
+                yield return null;
+            }
+            GameObject coreUp;
+            while(true) {
+                coreUp = GameObject.Find(CORE_CORE_UP_PATH);
+                if(coreUp) {
                     break;
                 }
                 yield return null;
@@ -224,6 +258,64 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set warp 2");
+
+            Guardian.Log("start: set warp 3");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_3_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(var path in PLASMA_WARP_3_POINT_PATHS) {
+                        while(true) {
+                            var point = GameObject.Find(path);
+                            if(point) {
+                                points.Add(point.transform);
+                                break;
+                            }
+                            yield return null;
+                        }
+                    }
+                    warp.Initialize(points, null, new GameObject[] { coreHeatVolume, coreDestructionVolume, corePlanetDestructionVolume });
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set warp 3");
+
+            Guardian.Log("start: warps in coreup");
+            foreach(Transform child in coreUp.transform) {
+                if(!child.name.Contains("PlasmaWarpLocal")) {
+                    continue;
+                }
+                var warp = child.gameObject.AddComponent<PlasmaWarp>();
+                var points = new List<Transform>();
+                foreach(Transform childOfWarp in warp.transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
+                    if(!childOfWarp.name.Contains("point")) {
+                        continue;
+                    }
+                    points.Add(childOfWarp);
+                }
+                warp.Initialize(points);
+            }
+            Guardian.Log("end: warps in coreup");
+
+            Guardian.Log("start: coreup escape warp");
+            while(true) {
+                var warpObj = GameObject.Find(PLASMA_WARP_COREUP_ESCAPE_PATH);
+                if(warpObj) {
+                    var warp = warpObj.AddComponent<PlasmaWarp>();
+                    var points = new List<Transform>();
+                    foreach(Transform childOfWarp in warp.transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
+                        if(!childOfWarp.name.Contains("point")) {
+                            continue;
+                        }
+                        points.Add(childOfWarp);
+                    }
+                    warp.Initialize(points, null, null, new GameObject[] { coreHeatVolume, coreDestructionVolume, corePlanetDestructionVolume });
+                    break;
+                }
+            }
+            Guardian.Log("end: coreup escape warp");
 
             Guardian.Log("start: set memory core cause supernova");
             while (true) {
@@ -337,6 +429,22 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set memory core hidden hatch");
+
+            Guardian.Log("start: set memory core lantern hit");
+            while (true) {
+                var memoryCoreObj = GameObject.Find(MEMORY_CORE_LANTERN_HIT_PATH);
+                if(memoryCoreObj) {
+                    var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
+                    memoryCore._style = MemoryCore.Style.LANTERN_HIT;
+                    memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCore._disabledObjs = new List<GameObject> {
+                        coreUp.transform.Find("scaffold (33)").gameObject,
+                    };
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: set memory core lantern hit");
         }
     }
 }

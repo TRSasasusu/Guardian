@@ -216,6 +216,54 @@ namespace Guardian {
 
                 End();
             }
+            else if(_style == MemoryCore.Style.LANTERN_HIT) {
+                var robot = transform.Find("robot");
+                var signal = transform.Find("robot/HiddenObjs/octagonal_cylinder/Particle System");
+                var points = new List<Transform>();
+                for(var i = 0; i <= 14; ++i) {
+                    points.Add(transform.Find($"robotpoint{i}"));
+                }
+                var meteorPoints = new List<Transform>();
+                for(var i = 0; i <= 3; ++i) {
+                    meteorPoints.Add(transform.Find($"meteorpoint{i}"));
+                }
+                var lantern = transform.Find("smooth_sphere");
+                var meteor = transform.Find("memory_meteor");
+                var bomb = transform.Find("smooth_sphere (1)");
+                var zeroGravity = transform.Find("memory_zerogravity");
+
+                zeroGravity.gameObject.SetActive(true);
+                spaceSphere.gameObject.SetActive(true);
+                lantern.gameObject.SetActive(true);
+                robot.position = points[0].position;
+                robot.rotation = points[0].rotation;
+                robot.gameObject.SetActive(true);
+                signal.gameObject.SetActive(true);
+
+                for(var i = 1; i <= 6; ++i) {
+                    yield return new WaitForSeconds(1);
+                    robot.position = points[i].position;
+                    if(i == 3) {
+                        meteor.gameObject.SetActive(true);
+                    }
+                    if(i >= 3) {
+                        meteor.position = meteorPoints[i - 3].position;
+                    }
+                }
+                yield return new WaitForSeconds(1);
+                bomb.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2);
+                meteor.gameObject.SetActive(false);
+                signal.gameObject.SetActive(false);
+                for(var i = 7; i <= 14; ++i) {
+                    yield return new WaitForSeconds(1);
+                    robot.position = points[i].position;
+                    robot.rotation = points[i].rotation;
+                }
+                yield return new WaitForSeconds(1.5f);
+
+                End();
+            }
         }
     }
 }

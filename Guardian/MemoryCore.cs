@@ -13,6 +13,7 @@ namespace Guardian {
             SUN_STATE_LOG,
             STABILIZE_WITH_SUN_STATION,
             HIDDEN_HATCH,
+            LANTERN_HIT,
         }
         public Style _style;
         public Coroutine _memorySpaceAnimationCoroutine;
