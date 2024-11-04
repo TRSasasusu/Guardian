@@ -121,5 +121,8 @@
     <None Update="planets\shiplogs\sprites\guardian_waiting_area.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="subtitle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
