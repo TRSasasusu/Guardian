@@ -185,6 +185,7 @@
         "isRelativeToParent": true,
         "reveals": [
           "guardian_core_fact",
+          "guardian_core_escape",
           "guardian_core_memory"
         ]
       }
@@ -383,7 +384,17 @@
   },
   "ShipLog": {
     "mapMode": {
-      "invisibleWhenHidden": true
+      "invisibleWhenHidden": true,
+      "revealedSprite": "planets/shiplogs/sprites/guardian_icon.png",
+      "scale": 1,
+      "manualPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "manualNavigationPosition": {
+        "x": 8,
+        "y": 1
+      }
     },
     "spriteFolder": "planets/shiplogs/sprites",
     "xmlFile": "planets/shiplogs/coresun_shiplog.xml"

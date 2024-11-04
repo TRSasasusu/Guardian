@@ -21,7 +21,7 @@
     <Curiosity>guardian_core</Curiosity>
     <ExploreFact>
       <ID>guardian_north_fact</ID>
-      <Text>A structure that connects the solar station to the plasma flame and the blue sun with plasma beams.</Text>
+      <Text>A structure that connects Sun Station to the plasma flame and the blue sun with plasma beams.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_north_memory_supernova</ID>
@@ -158,6 +158,10 @@
     <ExploreFact>
       <ID>guardian_core_fact</ID>
       <Text>I met the robot's main body! It has been protecting the true Sun's core until it reaches its limit.</Text>
+    </ExploreFact>
+    <ExploreFact>
+      <ID>guardian_core_escape</ID>
+      <Text>The robots are forced to inadvertently <![CDATA[<color=orange>escaping</color>]]> when their home system's sun is unable to keep up with the energy supply.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_core_memory</ID>

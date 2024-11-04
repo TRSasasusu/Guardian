@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="planets\assetbundles\" />
-    <Folder Include="planets\assets\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="planets\assetbundles\guardian">
@@ -101,6 +100,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="planets\shiplogs\sprites\guardian_hidden_hatch.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\shiplogs\sprites\guardian_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="planets\shiplogs\sprites\guardian_lantern.png">
