@@ -67,7 +67,7 @@
     {
       "id": "guardian_lantern",
       "position": {
-        "x": -700,
+        "x": -730,
         "y": 550
       }
     },
@@ -81,7 +81,7 @@
     {
       "id": "guardian_core",
       "position": {
-        "x": -250,
+        "x": -650,
         "y": 300
       }
     }

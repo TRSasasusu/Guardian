@@ -94,6 +94,9 @@
     <None Update="planets\shiplogs\sprites\guardian_coresun.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="planets\shiplogs\sprites\guardian_core_crush.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="planets\shiplogs\sprites\guardian_core_up.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
