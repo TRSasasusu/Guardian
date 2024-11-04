@@ -107,10 +107,12 @@ namespace Guardian {
                     supernovas.Add(transform.Find($"supernova{i}"));
                 }
                 var zeroGravity = transform.Find("memory_zerogravity");
+                var audio = transform.Find("audio_causesupernova");
 
                 zeroGravity.gameObject.SetActive(true);
                 spaceSphere.gameObject.SetActive(true);
                 sun.gameObject.SetActive(true);
+                audio.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1);
                 robot.gameObject.SetActive(true);
                 robotCore.gameObject.SetActive(false);
@@ -158,11 +160,13 @@ namespace Guardian {
                 var sunExpanded = transform.Find("smooth_sphere_expansion");
                 var sunstation = transform.Find("sun_station_entrance");
                 var zeroGravity = transform.Find("memory_zerogravity");
+                var audio = transform.Find("audio_stabilizewithss");
 
                 zeroGravity.gameObject.SetActive(true);
                 spaceSphere.gameObject.SetActive(true);
                 sunstation.gameObject.SetActive(true);
                 sun.gameObject.SetActive(true);
+                audio.gameObject.SetActive(true);
                 for(var j = 0; j < 3; ++j) {
                     yield return new WaitForSeconds(1.5f);
                     sun.gameObject.SetActive(false);
@@ -192,10 +196,12 @@ namespace Guardian {
                 var hatch = transform.Find("cylinder_empty_thick");
                 var hatchShadow = transform.Find("smooth_sphere (1)");
                 var zeroGravity = transform.Find("memory_zerogravity");
+                var audio = transform.Find("audio_hiddenhatch");
 
                 zeroGravity.gameObject.SetActive(true);
                 spaceSphere.gameObject.SetActive(true);
                 sun.gameObject.SetActive(true);
+                audio.gameObject.SetActive(true);
                 yield return new WaitForSeconds(2);
                 robot.gameObject.SetActive(true);
                 robot.position = points[0].position;
@@ -231,6 +237,7 @@ namespace Guardian {
                 var meteor = transform.Find("memory_meteor");
                 var bomb = transform.Find("smooth_sphere (1)");
                 var zeroGravity = transform.Find("memory_zerogravity");
+                var audio = transform.Find("audio_lanternhit");
 
                 zeroGravity.gameObject.SetActive(true);
                 spaceSphere.gameObject.SetActive(true);
@@ -239,6 +246,7 @@ namespace Guardian {
                 robot.rotation = points[0].rotation;
                 robot.gameObject.SetActive(true);
                 signal.gameObject.SetActive(true);
+                audio.gameObject.SetActive(true);
 
                 for(var i = 1; i <= 6; ++i) {
                     yield return new WaitForSeconds(1);
@@ -253,6 +261,7 @@ namespace Guardian {
                 yield return new WaitForSeconds(1);
                 bomb.gameObject.SetActive(true);
                 yield return new WaitForSeconds(2);
+                bomb.gameObject.SetActive(false);
                 meteor.gameObject.SetActive(false);
                 signal.gameObject.SetActive(false);
                 for(var i = 7; i <= 14; ++i) {

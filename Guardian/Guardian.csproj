@@ -52,7 +52,31 @@
     <None Update="planets\assetbundles\guardian.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="planets\assets\BrokenSound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\CauseSupernova.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\CoreUp.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\HiddenHatch.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\LanternHit.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="planets\assets\Robot0.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\Robot1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\RobotReal.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\assets\StabilizeWithSS.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="planets\assets\SunStationSignal.wav">

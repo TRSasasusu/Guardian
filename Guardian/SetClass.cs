@@ -324,6 +324,7 @@ namespace Guardian {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.CAUSE_SUPERNOVA;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/audio_causesupernova").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         energyStabilizer.transform.Find("scaffold (4)").gameObject,
                         energyStabilizer.transform.Find("scaffold (7)").gameObject,
@@ -349,6 +350,7 @@ namespace Guardian {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.STABILIZE_WITH_SUN_STATION;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/audio_stabilizewithss").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         energyStabilizer.transform.Find("upper_block").gameObject,
                     };
@@ -416,6 +418,7 @@ namespace Guardian {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.HIDDEN_HATCH;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/audio_hiddenhatch").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         waitingArea.transform.Find("scaffold (1)").gameObject,
                         waitingArea.transform.Find("BrokenRobot").gameObject,
@@ -437,6 +440,7 @@ namespace Guardian {
                     var memoryCore = memoryCoreObj.AddComponent<MemoryCore>();
                     memoryCore._style = MemoryCore.Style.LANTERN_HIT;
                     memoryCoreObj.transform.Find("memory_space/memory_zerogravity").gameObject.SetActive(false);
+                    memoryCoreObj.transform.Find("memory_space/audio_lanternhit").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
                         coreUp.transform.Find("scaffold (33)").gameObject,
                     };

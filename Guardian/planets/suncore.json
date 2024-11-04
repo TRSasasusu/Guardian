@@ -76,6 +76,63 @@
           "guardian_hidden_hatch_enter"
         ]
       }
+    ],
+    "audioVolumes": [
+      {
+        "audio": "planets/assets/CauseSupernova.wav",
+        "track": "music",
+        "radius": 80,
+        "volume": 0.8,
+        "priority": 1,
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "isRelativeToParent": true,
+        "rename": "audio_causesupernova"
+      },
+      {
+        "audio": "planets/assets/StabilizeWithSS.wav",
+        "track": "music",
+        "radius": 50,
+        "volume": 0.8,
+        "priority": 1,
+        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
+        "isRelativeToParent": true,
+        "rename": "audio_stabilizewithss"
+      },
+      {
+        "audio": "planets/assets/HiddenHatch.wav",
+        "track": "music",
+        "radius": 40,
+        "volume": 0.8,
+        "priority": 1,
+        "parentPath": "Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch/memory_space",
+        "isRelativeToParent": true,
+        "rename": "audio_hiddenhatch"
+      },
+      {
+        "audio": "planets/assets/LanternHit.wav",
+        "track": "music",
+        "radius": 50,
+        "volume": 0.8,
+        "priority": 2,
+        "parentPath": "Sector/SunCoreStructure/CoreUp/MemoryCoreLanternHit/memory_space",
+        "isRelativeToParent": true,
+        "rename": "audio_lanternhit"
+      },
+      {
+        "audio": "planets/assets/CoreUp.wav",
+        "track": "music",
+        "radius": 400,
+        "volume": 0.6,
+        "priority": 1,
+        "parentPath": "Sector/SunCoreStructure/CoreUp",
+        "isRelativeToParent": true,
+        "position": {
+          "x": 0,
+          "y": 15,
+          "z": 145
+        },
+        "rename": "audio_coreup"
+      }
     ]
   },
   "Star": {
