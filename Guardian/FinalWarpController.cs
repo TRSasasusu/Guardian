@@ -71,7 +71,7 @@ namespace Guardian {
             if(!_plasmaWarp || !_plasmaWarp._inactive) {
                 return;
             }
-            if(_sphereItem && Vector3.Distance(_sphereItem.transform.position, _plasmaWarp.transform.position) < 10) {
+            if(_sphereItem && Vector3.Distance(_sphereItem.transform.position, _plasmaWarp.transform.position) < 30) {
                 foreach(Transform child in _plasmaWarp.transform) {
                     if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
                         child.gameObject.SetActive(true);
