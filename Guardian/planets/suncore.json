@@ -44,7 +44,7 @@
     ],
     "oxygenVolumes": [
       {
-        "radius": 10,
+        "radius": 15,
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/scaffoldCampfire",
         "isRelativeToParent": true,
         "treeVolume": false,
@@ -371,7 +371,7 @@
       {
         "audio": "planets/assets/Robot0.wav",
         "frequency": "Robot",
-        "detectionRadius": 25,
+        "detectionRadius": 100,
         "rename": "suncore_broken_robot_signal",
         "name": "Broken Robot",
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/BrokenRobot/HiddenObjs/octagonal_cylinder",
@@ -397,14 +397,14 @@
     "mapMode": {
       "invisibleWhenHidden": true,
       "revealedSprite": "planets/shiplogs/sprites/guardian_icon.png",
-      "scale": 1,
+      "scale": 3,
       "manualPosition": {
         "x": 0,
         "y": 0
       },
       "manualNavigationPosition": {
-        "x": 8,
-        "y": 1
+        "x": 5,
+        "y": 0
       }
     },
     "spriteFolder": "planets/shiplogs/sprites",

@@ -4,7 +4,7 @@
   "author": "orclecle",
   "name": "Guardian",
   "uniqueName": "orclecle.Guardian",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "owmlVersion": "2.9.0",
   "dependencies": ["xen.NewHorizons"]
 }

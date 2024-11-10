@@ -68,6 +68,7 @@ namespace Guardian {
         const string CORE_OF_CORE_PATH = "CoreofCore_Body/Sector/Star";
         const string REVEAL_CRUSH_INTERLOPER = "SunCore_Body/Sector/reveal_crushinterloper";
         const string REVEAL_LOW_CORE = "SunCore_Body/Sector/reveal_lowcore";
+        const string SHIPLOG_MAPMODE_CORE_RUN_PATH = "Ship_Body/Module_Cabin/Systems_Cabin/ShipLogPivot/ShipLog/ShipLogPivot/ShipLogCanvas/MapMode/ScaleRoot/PanRoot/Sun Core_ShipLog";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -614,6 +615,17 @@ namespace Guardian {
                 yield return null;
             }
             Guardian.Log("end: set core crush");
+
+            Guardian.Log("start: fix sibling of map mode");
+            while(true) {
+                var sunCoreShipLog = GameObject.Find(SHIPLOG_MAPMODE_CORE_RUN_PATH);
+                if(sunCoreShipLog) {
+                    sunCoreShipLog.transform.SetAsLastSibling();
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: fix sibling of map mode");
         }
     }
 }
