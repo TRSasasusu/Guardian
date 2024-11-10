@@ -11,6 +11,16 @@ namespace Guardian {
         public GameObject _blockEntrance;
         public GameObject _outerSurface;
 
+        //public void Initialize() {
+        //    var rfVolumeObj = new GameObject("RFVolume");
+        //    rfVolumeObj.transform.parent = transform;
+        //    rfVolumeObj.transform.localPosition = Vector3.zero;
+        //    rfVolumeObj.transform.localScale = Vector3.one;
+        //    var rfVolumeCollider = rfVolumeObj.AddComponent<SphereCollider>();
+        //    rfVolumeCollider
+        //    var rfVolume = rfVolumeObj.AddComponent<ReferenceFrameVolume>();
+        //}
+
         void OnTriggerEnter(Collider other) {
             if(Util.IsShip(other) || Util.IsPlayer(other)) {
                 if(_disabledObjs != null) {
@@ -27,10 +37,10 @@ namespace Guardian {
                     _outerSurface.GetComponent<Collider>().enabled = false;
                 }
 
-                var shipBody = other.GetComponentInParent<ShipBody>();
-                if(shipBody) {
-                    shipBody.SetVelocity(Vector3.zero);
-                }
+                //var shipBody = other.GetComponentInParent<ShipBody>();
+                //if(shipBody) {
+                //    shipBody.SetVelocity(Vector3.zero);
+                //}
             }
         }
 

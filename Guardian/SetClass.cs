@@ -471,7 +471,10 @@ namespace Guardian {
             while(true) {
                 hiddenHatchObj = GameObject.Find(HIDDEN_HATCH_PATH);
                 if(hiddenHatchObj) {
-                    hiddenHatchObj.transform.Find("PlasmaCloaking").gameObject.AddComponent<PlasmaCloaking>()._cloakedObj = hiddenHatchObj.transform.Find("HiddenObjs").gameObject;
+                    var plasmaCloaking = hiddenHatchObj.transform.Find("PlasmaCloaking").gameObject.AddComponent<PlasmaCloaking>();
+                    plasmaCloaking._cloakedObj = hiddenHatchObj.transform.Find("HiddenObjs").gameObject;
+                    plasmaCloaking._sunGravityWell = sunGravityWell;
+                    plasmaCloaking._outerSurface = sunOutsideSurface;
                     var hiddenHatchSpace = hiddenHatchObj.transform.Find("HiddenObjs/smooth_sphere_inside").gameObject.AddComponent<HiddenHatchSpace>();
                     hiddenHatchSpace._disabledObjs = new List<GameObject> { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio };
                     hiddenHatchSpace._blockEntrance = hiddenHatchObj.transform.Find("HiddenObjs/BlockEntrance").gameObject;
