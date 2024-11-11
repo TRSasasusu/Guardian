@@ -10,6 +10,8 @@ namespace Guardian {
         public List<GameObject> _disabledObjs;
         public GameObject _blockEntrance;
         public GameObject _outerSurface;
+        public GameObject _coreSunGravityWell;
+        public GameObject _geometrySun;
 
         //public void Initialize() {
         //    var rfVolumeObj = new GameObject("RFVolume");
@@ -36,6 +38,12 @@ namespace Guardian {
                 if(_outerSurface) {
                     _outerSurface.GetComponent<Collider>().enabled = false;
                 }
+                if(_coreSunGravityWell) {
+                    _coreSunGravityWell.SetActive(true);
+                }
+                if(_geometrySun) {
+                    _geometrySun.SetActive(false);
+                }
 
                 //var shipBody = other.GetComponentInParent<ShipBody>();
                 //if(shipBody) {
@@ -49,6 +57,9 @@ namespace Guardian {
                 gameObject.SetActive(false);
                 if(_outerSurface) {
                     _outerSurface.GetComponent<Collider>().enabled = true;
+                }
+                if(_geometrySun) {
+                    _geometrySun.SetActive(true);
                 }
             }
         }

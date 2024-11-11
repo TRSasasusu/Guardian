@@ -1,0 +1,21 @@
+﻿<DialogueTree xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/dialogue_schema.xsd">
+  <NameField>Slate</NameField>
+
+  <DialogueNode>
+    <Name>Scientist5</Name>
+    <DialogueOptionsList>
+      <DialogueOption>
+        <Text>I see signs of tampering on the signal scope.</Text>
+        <DialogueTarget>ScientistTampering</DialogueTarget>
+      </DialogueOption>
+    </DialogueOptionsList>
+  </DialogueNode>
+
+  <DialogueNode>
+    <Name>ScientistTampering</Name>
+    <Dialogue>
+      <Page>Tampering is a misanthropy. I <![CDATA[<i>tuned</i>]]> it up. While you were sleeping in there. Well, I won't deny the fact that it's picking up some weird signals.</Page>
+      <Page>Isn't it strange that a transmission that is supposed to come from <![CDATA[<i>deep space</i>]]> would actually come from <![CDATA[<i>the center of our star system</i>]]>?</Page>
+    </Dialogue>
+  </DialogueNode>
+</DialogueTree>

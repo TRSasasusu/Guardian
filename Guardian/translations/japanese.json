@@ -1,5 +1,10 @@
 {
     "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+    "DialogueDictionary": {
+        "I see signs of tampering on the signal scope.": "シグナルスコープにいじられた跡があるんだけど？",
+        "Tampering is a misanthropy. I <![CDATA[<i>tuned</i>]]> it up. While you were sleeping in there. Well, I won't deny the fact that it's picking up some weird signals.": "いじられたとは人聞きの悪い。そいつを<![CDATA[<i>チューニング</i>]]>してやったんだ。お前がそこで寝ている間にな。…まあ、おかげで変な信号を拾うようになってしまった事実は否定しないが。",
+        "Isn't it strange that a transmission that is supposed to come from <![CDATA[<i>deep space</i>]]> would actually come from <![CDATA[<i>the center of our star system</i>]]>?": "<![CDATA[<i>深宇宙</i>]]>から聴こえるはずの通信が、まさか<![CDATA[<i>私らの星系の真ん中</i>]]>から聴こえるなんておかしいもんな？"
+    },
     "ShipLogDictionary": {
         "Apparently Slate had tweaked the signal scope before I left, and it was picking up some strange signal on some frequency.": "出発前にSlateがシグナルスコープを微調整したせいで、おかしな信号をどれかの周波数で拾うようになってしまったらしい。",
         "A huge structure <![CDATA[<color=orange>isolated</color>]]> within the sun that can be accessed from Sun Station. At its center is a blue sun that serves as its core, and the whole structure is a plasma shell.": "太陽ステーションからアクセスできる、太陽の中に隔離された巨大建造物。中央にコアとなる青い太陽が存在し、全体としてプラズマシェルとなっている。",

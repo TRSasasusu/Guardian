@@ -3,8 +3,8 @@
   "name": "Sun Core",
   "Base": {
     "gravityFallOff": "inverseSquared",
-    "surfaceSize": 1100,
-    "surfaceGravity": 20
+    "surfaceSize": 1300,
+    "surfaceGravity": 15
   },
   "Orbit": {
     "isStatic": true
@@ -13,13 +13,13 @@
     "zeroGravityVolumes": [
       {
         "radius": 80,
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreCauseSupernova/memory_space",
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
       },
       {
         "radius": 50,
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
         "rename": "memory_zerogravity"
       },
@@ -138,7 +138,7 @@
       {
         "radius": 80,
         "rename": "reveal_memory",
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreCauseSupernova/memory_space",
         "isRelativeToParent": true,
         "reveals": [
           "guardian_north_memory_supernova",
@@ -149,7 +149,7 @@
       {
         "radius": 50,
         "rename": "reveal_memory",
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
         "reveals": [
           "guardian_north_memory_ss",
@@ -197,7 +197,7 @@
         "radius": 80,
         "volume": 0.7,
         "priority": 1,
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreCauseSupernova/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreCauseSupernova/memory_space",
         "isRelativeToParent": true,
         "rename": "audio_causesupernova"
       },
@@ -207,7 +207,7 @@
         "radius": 50,
         "volume": 0.7,
         "priority": 1,
-        "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/MemoryCoreStabilizeWithSunStation/memory_space",
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/MemoryCoreStabilizeWithSunStation/memory_space",
         "isRelativeToParent": true,
         "rename": "audio_stabilizewithss"
       },
@@ -296,16 +296,16 @@
       },
       {
         "time": 8,
-        "value": 1.35
-      },
-      {
-        "time": 15,
-        "value": 1.35
-      },
-      {
-        "time": 16,
         "value": 1.38
-      }
+      },
+      //{
+      //  "time": 15,
+      //  "value": 1.35
+      //},
+      //{
+      //  "time": 16,
+      //  "value": 1.38
+      //}
     ],
     "solarFlareSettings": {
       //"scaleFactor": 1,
@@ -390,6 +390,12 @@
         "parentPath": "Sector/SunCoreStructure/HiddenHatch",
         "isRelativeToParent": true,
         "rename": "entrylocation_hiddenhatch"
+      }
+    ],
+    "dialogue": [
+      {
+        "pathToExistingDialogue": "Sector_TH/Sector_Village/Sector_StartingCamp/Characters_StartingCamp/Villager_HEA_Slate/ConversationZone_RSci",
+        "xmlFile": "planets/dialogues/guardian_intro_slate.xml"
       }
     ]
   },

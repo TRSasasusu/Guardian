@@ -10,7 +10,7 @@ namespace Guardian {
         public GameObject _cloakedObj;
         public GameObject _sunGravityWell;
         public GameObject _outerSurface;
-
+        public GameObject _geometrySun;
         void OnTriggerEnter(Collider other) {
             if(Util.IsShip(other) || Util.IsPlayer(other)) {
                 _cloakedObj.SetActive(true);
@@ -33,6 +33,9 @@ namespace Guardian {
                     _sunGravityWell.SetActive(true);
                 }
                 _outerSurface.GetComponent<Collider>().enabled = true;
+                if(_geometrySun) {
+                    _geometrySun.SetActive(true);
+                }
             }
         }
     }
