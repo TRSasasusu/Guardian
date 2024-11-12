@@ -152,6 +152,11 @@
       <Text>Somewhere I heard the sound of Interloper crashing.</Text>
       <RumorName>Interloper Crashing</RumorName>
     </RumorFact>
+    <RumorFact>
+      <ID>guardian_core_crush_rumor_look</ID>
+      <Text>I discovered a huge structure protruding from the blue sun.</Text>
+      <RumorName>Huge Structure</RumorName>
+    </RumorFact>
     <ExploreFact>
       <ID>guardian_core_crush_interloper</ID>
       <Text>Several platforms can be seen inside the narrow gap created when Interloper crashes into them.</Text>

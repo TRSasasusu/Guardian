@@ -112,6 +112,18 @@
       },
       {
         "radius": 200,
+        "rename": "reveal_lowcore_look",
+        "reveals": [
+          "guardian_core_crush_rumor_look"
+        ],
+        "position": {
+          "x": 29,
+          "y": 11,
+          "z": 1562
+        }
+      },
+      {
+        "radius": 200,
         "rename": "reveal_lowcore",
         "reveals": [
           "guardian_core_crush_fact",
