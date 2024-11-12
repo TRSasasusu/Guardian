@@ -70,6 +70,7 @@ namespace Guardian {
         const string REVEAL_CRUSH_INTERLOPER = "SunCore_Body/Sector/reveal_crushinterloper";
         const string REVEAL_LOW_CORE = "SunCore_Body/Sector/reveal_lowcore";
         const string SHIPLOG_MAPMODE_CORE_RUN_PATH = "Ship_Body/Module_Cabin/Systems_Cabin/ShipLogPivot/ShipLog/ShipLogPivot/ShipLogCanvas/MapMode/ScaleRoot/PanRoot/Sun Core_ShipLog";
+        const string SHIPLOG_ENTRY_HUD_MARKER_PATH = "Ship_Body/Module_Cabin/Systems_Cabin/ShipLogPivot/ShipLog/EntryHUDMarker";
 
         public SetClass() {
             Guardian.Instance.StartCoroutine(InitializeBody());
@@ -444,6 +445,18 @@ namespace Guardian {
             }
             Guardian.Log("end: find outside surface");
 
+            Guardian.Log("start: find shiplog entry hud marker");
+            ShipLogEntryHUDMarker shipLogEntryHUDMarker;
+            while(true) {
+                var shipLogEntryHUDMarkerObj = GameObject.Find(SHIPLOG_ENTRY_HUD_MARKER_PATH);
+                if(shipLogEntryHUDMarkerObj) {
+                    shipLogEntryHUDMarker = shipLogEntryHUDMarkerObj.GetComponent<ShipLogEntryHUDMarker>();
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find shiplog entry hud marker");
+
             Guardian.Log("start: set plasmacloaking on hiddenhatch");
             GameObject hiddenHatchObj;
             while(true) {
@@ -454,6 +467,9 @@ namespace Guardian {
                     plasmaCloaking._sunGravityWell = sunGravityWell;
                     plasmaCloaking._outerSurface = sunOutsideSurface;
                     plasmaCloaking._geometrySun = sunGeometry;
+                    plasmaCloaking._rfVolume = hiddenHatchObj.transform.Find("RFVolume").gameObject;
+                    plasmaCloaking._hudMarker = shipLogEntryHUDMarker;
+                    plasmaCloaking._rfVolume.SetActive(false);
                     var hiddenHatchSpace = hiddenHatchObj.transform.Find("HiddenObjs/smooth_sphere_inside").gameObject.AddComponent<HiddenHatchSpace>();
                     hiddenHatchSpace._disabledObjs = new List<GameObject> { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio };
                     hiddenHatchSpace._blockEntrance = hiddenHatchObj.transform.Find("HiddenObjs/BlockEntrance").gameObject;

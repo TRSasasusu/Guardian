@@ -11,6 +11,9 @@ namespace Guardian {
         public GameObject _sunGravityWell;
         public GameObject _outerSurface;
         public GameObject _geometrySun;
+        public GameObject _rfVolume;
+        public ShipLogEntryHUDMarker _hudMarker;
+
         void OnTriggerEnter(Collider other) {
             if(Util.IsShip(other) || Util.IsPlayer(other)) {
                 _cloakedObj.SetActive(true);
@@ -21,6 +24,9 @@ namespace Guardian {
                 var shipBody = other.GetComponentInParent<ShipBody>();
                 if(shipBody) {
                     shipBody.SetVelocity(Vector3.zero);
+                }
+                if(_rfVolume) {
+                    _rfVolume.SetActive(true);
                 }
             }
         }
@@ -36,6 +42,15 @@ namespace Guardian {
                 if(_geometrySun) {
                     _geometrySun.SetActive(true);
                 }
+                if(_rfVolume && _hudMarker && _hudMarker.GetMarkedEntryID() != "guardian_hidden_hatch") {
+                    _rfVolume.SetActive(false);
+                }
+            }
+        }
+
+        void Update() {
+            if(_rfVolume && _hudMarker && _hudMarker.GetMarkedEntryID() == "guardian_hidden_hatch") {
+                _rfVolume.SetActive(true);
             }
         }
     }

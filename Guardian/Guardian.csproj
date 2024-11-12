@@ -87,6 +87,9 @@
     <None Update="planets\shiplogs\sprites\guardian_cause_supernova.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="planets\shiplogs\sprites\guardian_closed_path.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="planets\shiplogs\sprites\guardian_core.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -121,6 +124,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="planets\shiplogs\sprites\guardian_waiting_area.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="planets\shiplogs\sprites\guardian_working_robot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="subtitle.png">

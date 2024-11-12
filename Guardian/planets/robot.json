@@ -37,6 +37,14 @@
         },
         "reveals": "guardian_waiting_area_signal"
       }
+    ],
+    "entryLocation": [
+      {
+        "id": "guardian_working_robot",
+        "parentPath": "Sector/robot",
+        "isRelativeToParent": true,
+        "rename": "entrylocation_working_robot"
+      }
     ]
   }
 }

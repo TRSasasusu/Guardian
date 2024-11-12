@@ -18,6 +18,9 @@ namespace Guardian {
         GameObject _sphere;
         public GameObject _robotLocal;
 
+        OWRigidbody _owRigidbody;
+        Rigidbody _rigidbody;
+
         public void Initialize() {
             _dummyInitialPos.position = _hatchCylinder.position + _hatchCylinder.forward * _initialDistance;
             transform.position = _dummyInitialPos.position;
@@ -26,6 +29,9 @@ namespace Guardian {
             _sphere = transform.Find("Sector/robot/HiddenObjs/smooth_sphere").gameObject;
             _sphere.SetActive(true);
             _robotLocal = transform.Find("Sector/robot").gameObject;
+
+            _owRigidbody = GetComponent<OWRigidbody>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         void Update() {
@@ -36,6 +42,7 @@ namespace Guardian {
             //transform.position += transform.forward * _speed * Time.deltaTime;
             _currentTimeReachingHatch += Time.deltaTime;
             transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
+            //_rigidbody.MovePosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
 
             if(_currentTimeReachingHatch >= _timeReachingHatch) {
                 _robotLocal.transform.parent = _coreSunSector;
@@ -65,6 +72,9 @@ namespace Guardian {
             }
             transform.LookAt(_hatchCylinder);
             transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
+            //_owRigidbody.MoveToPosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
+            //_rigidbody.MovePosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
+            //_owRigidbody.SetVelocity((_hatchCylinder.position - _dummyInitialPos.position).normalized * (_initialDistance / _timeReachingHatch));
         }
     }
 }

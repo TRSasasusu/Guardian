@@ -24,16 +24,22 @@
       <Text>A structure that connects Sun Station to the plasma flame and the blue sun with plasma beams.</Text>
     </ExploreFact>
     <ExploreFact>
+      <ID>guardian_north_signal</ID>
+      <Text>I got a signal from the broken robot.</Text>
+    </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_closed_path</ID>
+    <Name>Closed Path</Name>
+    <Curiosity>guardian_core</Curiosity>
+    <ExploreFact>
       <ID>guardian_north_memory_supernova</ID>
       <Text>I saw the spatial memory at a location where there was an enclosed structure directly above.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_north_memory_ss</ID>
       <Text>By ignoring physics with spatial memories, I have seen memories within the enclosed structure.</Text>
-    </ExploreFact>
-    <ExploreFact>
-      <ID>guardian_north_signal</ID>
-      <Text>I got a signal from the broken robot.</Text>
     </ExploreFact>
   </Entry>
 
@@ -73,9 +79,15 @@
       <ID>guardian_waiting_area_memory</ID>
       <Text>I saw the spatial memory present in the center of the robots.</Text>
     </ExploreFact>
+  </Entry>
+
+  <Entry>
+    <ID>guardian_working_robot</ID>
+    <Name>Working Robot</Name>
+    <Curiosity>guardian_core</Curiosity>
     <ExploreFact>
       <ID>guardian_waiting_area_signal</ID>
-      <Text>I got a signal of a working robot.</Text>
+      <Text>I got a signal of a working robot. It also looks like I can put a HUD marker here.</Text>
     </ExploreFact>
   </Entry>
 

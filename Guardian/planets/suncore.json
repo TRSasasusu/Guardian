@@ -382,6 +382,21 @@
           "z": 1.3282
         },
         "reveals": "guardian_north_signal"
+      },
+      {
+        "audio": "planets/assets/Robot1.wav",
+        "frequency": "Robot",
+        "detectionRadius": 25,
+        "rename": "robot_signal",
+        "name": "Working Robot",
+        "parentPath": "Sector/SunCoreStructure/WaitingArea/MemoryCoreHiddenHatch/memory_space/robot/HiddenObjs/octagonal_cylinder",
+        "isRelativeToParent": true,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 1.3282
+        },
+        "reveals": "guardian_waiting_area_signal"
       }
     ],
     "entryLocation": [
@@ -389,7 +404,12 @@
         "id": "guardian_hidden_hatch",
         "parentPath": "Sector/SunCoreStructure/HiddenHatch",
         "isRelativeToParent": true,
-        "rename": "entrylocation_hiddenhatch"
+        "rename": "entrylocation_hiddenhatch",
+        "position": {
+          "x": -357,
+          "y": -579,
+          "z": -551
+        }
       }
     ],
     "dialogue": [

@@ -12,6 +12,13 @@
       "id": "guardian_north",
       "position": {
         "x": -230,
+        "y": 520
+      }
+    },
+    {
+      "id": "guardian_closed_path",
+      "position": {
+        "x": -230,
         "y": 710
       }
     },
@@ -34,6 +41,13 @@
       "position": {
         "x": -230,
         "y": 350
+      }
+    },
+    {
+      "id": "guardian_working_robot",
+      "position": {
+        "x": -330,
+        "y": 160
       }
     },
     {
