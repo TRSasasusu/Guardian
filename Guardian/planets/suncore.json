@@ -368,6 +368,18 @@
         "scale": 0.05
       },
       {
+        "path": "Comet_Body/Sector_CO",
+        "parentPath": "Sector/SunCoreStructure/CoreCrush",
+        "rename": "DummyComet",
+        "isRelativeToParent": true,
+        "rotation": {
+          "x": 316.0919,
+          "y": 107.2167,
+          "z": 180
+        },
+        "keepLoaded": true
+      },
+      {
         "rename": "Ernesto",
         "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/AnglerFishExhibit/AnglerFishTankPivot/Beast_Anglerfish",
         "scale": 0.025,
