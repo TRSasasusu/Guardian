@@ -17,7 +17,7 @@ namespace Guardian {
         Transform _core;
         float _speed;
 
-        public bool _inactive;
+        public bool _inactive { get; private set; }
 
         public void Initialize(IEnumerable<Transform> points, IEnumerable<int> warpIndices = null, IEnumerable<GameObject> disabledObjs = null, IEnumerable<GameObject> enabledObjs = null) {
             _core = transform.Find("Core");
@@ -42,6 +42,15 @@ namespace Guardian {
                 var copyPlasmaBeam = Instantiate(plasmaBeam, transform);
                 _beams.Add(copyPlasmaBeam.GetComponent<ParticleSystem>());
             }
+
+            if(transform.Find("LowCore")) {
+                foreach(Transform child in transform) {
+                    if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+                _inactive = true;
+            }
         }
 
         void Update() {
@@ -61,7 +70,20 @@ namespace Guardian {
 
         void OnTriggerEnter(Collider other) {
             if(_inactive) {
-                return;
+                if(SphereItem.PickedUpSphereItem) {
+                    foreach(Transform child in transform) {
+                        if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
+                            child.gameObject.SetActive(true);
+                        }
+                        if(child.name == "LowCore") {
+                            child.gameObject.SetActive(false);
+                        }
+                    }
+                    _inactive = false;
+                }
+                else {
+                    return;
+                }
             }
             if(other.gameObject == Locator._playerBody.gameObject) {
                 Guardian.Log("player enters plasmawarp");

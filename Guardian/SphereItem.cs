@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace Guardian {
     public class SphereItem : OWItem {
+        public static SphereItem PickedUpSphereItem;
+
         public const ItemType GuardianSphere = (ItemType)2048;
 
         public override void Awake() {
@@ -16,6 +18,16 @@ namespace Guardian {
 
         public override string GetDisplayName() {
             return "Energy Sphere";
+        }
+
+        public override void PickUpItem(Transform holdTranform) {
+            base.PickUpItem(holdTranform);
+            PickedUpSphereItem = this;
+        }
+
+        public override void DropItem(Vector3 position, Vector3 normal, Transform parent, Sector sector, IItemDropTarget customDropTarget) {
+            base.DropItem(position, normal, parent, sector, customDropTarget);
+            PickedUpSphereItem = null;
         }
 
         void Update() {

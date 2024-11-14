@@ -10,19 +10,23 @@ namespace Guardian {
     public class FinalWarpController : MonoBehaviour {
         public PlasmaWarp _plasmaWarp;
         public GameObject _comet;
-        public SphereItem _sphereItem;
+        //public SphereItem _sphereItem;
         public GameObject _soundReveal;
         public GameObject _seeReveal;
 
+        GameObject _coverCollider;
         GameObject _cometDummy;
         Transform _coverBlock;
         List<Transform> _brokenPlanes;
         List<Transform> _brokenPlanePoints;
         List<Transform> _cometPoints;
         GameObject _brokenSound;
+        bool _addTime;
+        bool _broken;
 
         public void Initialize() {
             //_coverBlock = transform.Find("Cube").gameObject;
+            _coverCollider = transform.Find("CoverCollider").gameObject;
             _coverBlock = transform.Find("broken_block");
             _brokenPlanes = new List<Transform>();
             _brokenPlanePoints = new List<Transform>();
@@ -37,12 +41,12 @@ namespace Guardian {
                 }
             }
 
-            foreach(Transform child in _plasmaWarp.transform) {
-                if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
-                    child.gameObject.SetActive(false);
-                }
-            }
-            _plasmaWarp._inactive = true;
+            //foreach(Transform child in _plasmaWarp.transform) {
+            //    if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
+            //        child.gameObject.SetActive(false);
+            //    }
+            //}
+            //_plasmaWarp._inactive = true;
 
             _brokenSound = transform.parent.Find("audio_brokensound").gameObject;
             _brokenSound.SetActive(false);
@@ -86,14 +90,18 @@ namespace Guardian {
                             _brokenSound.SetActive(true);
                             _soundReveal.SetActive(true);
                             _seeReveal.SetActive(true);
+                            _coverCollider.SetActive(false);
+                            _broken = true;
                         }
                         for(var j = 0; j < _brokenPlanes.Count; ++j) {
-                            _brokenPlanes[j].position = Vector3.Lerp(Vector3.zero, _brokenPlanePoints[j].position, time / 5);
+                            _brokenPlanes[j].localPosition = Vector3.Lerp(Vector3.zero, _brokenPlanePoints[j].localPosition, time / 5);
+                            _brokenPlanes[j].localRotation = Quaternion.Lerp(Quaternion.Euler(-90, 0, 0), _brokenPlanePoints[j].localRotation, time / 5);
                         }
                     }
                     yield return null;
                 }
             }
+            yield return new WaitForSeconds(15);
             _brokenSound.SetActive(false);
 
             //time = 0;
@@ -119,24 +127,48 @@ namespace Guardian {
         }
 
         void Update() {
-            if(!_plasmaWarp || !_plasmaWarp._inactive) {
+            if(!_broken) {
                 return;
             }
-            if(_sphereItem && Vector3.Distance(_sphereItem.transform.position, _plasmaWarp.transform.position) < 30) {
-                foreach(Transform child in _plasmaWarp.transform) {
-                    if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
-                        child.gameObject.SetActive(true);
-                    }
-                    if(child.name == "LowCore") {
-                        child.gameObject.SetActive(false);
-                    }
-                }
-                _plasmaWarp._inactive = false;
-
-                if(TimeLoop.GetSecondsRemaining() < 180) {
-                    TimeLoop.SetSecondsRemaining(180);
-                }
+            if(_addTime) {
+                return;
             }
+            var player = Locator.GetPlayerBody();
+            if(!player || !_plasmaWarp) {
+                return;
+            }
+            if(Vector3.Distance(player.transform.position, _plasmaWarp.transform.position) < 200) {
+                if(SphereItem.PickedUpSphereItem) {
+                    if(TimeLoop.GetSecondsRemaining() < 180) {
+                        TimeLoop.SetSecondsRemaining(180);
+                    }
+                }
+                else {
+                    if(TimeLoop.GetSecondsRemaining() < 90) {
+                        TimeLoop.SetSecondsRemaining(90);
+                    }
+                }
+                _addTime = true;
+            }
+
+            //if(!_plasmaWarp || !_plasmaWarp._inactive) {
+            //    return;
+            //}
+            //if(_sphereItem && Vector3.Distance(_sphereItem.transform.position, _plasmaWarp.transform.position) < 30) {
+            //    foreach(Transform child in _plasmaWarp.transform) {
+            //        if(child.name == "Core" || child.name.Contains("PlasmaBeam")) {
+            //            child.gameObject.SetActive(true);
+            //        }
+            //        if(child.name == "LowCore") {
+            //            child.gameObject.SetActive(false);
+            //        }
+            //    }
+            //    _plasmaWarp._inactive = false;
+
+            //    if(TimeLoop.GetSecondsRemaining() < 180) {
+            //        TimeLoop.SetSecondsRemaining(180);
+            //    }
+            //}
         }
     }
 }
