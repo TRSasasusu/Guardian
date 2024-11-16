@@ -24,6 +24,8 @@ namespace Guardian {
         bool _addTime;
         bool _broken;
 
+        const float COMET_CRUSH_TIME = 180;//60 * 19 + 45;
+
         public void Initialize() {
             //_coverBlock = transform.Find("Cube").gameObject;
             _coverCollider = transform.Find("CoverCollider").gameObject;
@@ -56,8 +58,8 @@ namespace Guardian {
             _soundReveal.SetActive(false);
             _seeReveal.SetActive(false);
 
-            _cometDummy = transform.Find("DummyComet").gameObject;
-            _cometDummy.SetActive(false);
+            //_cometDummy = transform.Find("DummyComet").gameObject;
+            //_cometDummy.SetActive(false);
             _cometPoints = new List<Transform>();
             foreach(Transform child in transform.Cast<Transform>().OrderBy(x => x.GetSiblingIndex())) {
                 if(child.name.Contains("InterloperPoint")) {
@@ -70,7 +72,7 @@ namespace Guardian {
             float time = 0;
             while(true) {
                 time += Time.deltaTime;
-                if(time > 60 * 19 + 45) {
+                if(time > COMET_CRUSH_TIME) {
                     break;
                 }
                 yield return null;
@@ -78,13 +80,20 @@ namespace Guardian {
 
             time = 0;
             if(_comet) {
-                _comet.SetActive(false);
+                //_comet.SetActive(false);
+                _comet.transform.position = _cometPoints[0].position;
+                _cometDummy = _comet.transform.Find("Sector_CO").gameObject;
+                _cometDummy.transform.parent = transform;
+                _cometDummy.transform.localEulerAngles = new Vector3(316.0919f, 107.2167f, 180);
             }
             _cometDummy.SetActive(true);
             _cometDummy.transform.position = _cometPoints[0].position;
             for (var i = 1; i < _cometPoints.Count; i++) {
                 for (time = 0; time < 5; time += Time.deltaTime) {
                     _cometDummy.transform.position = Vector3.Lerp(_cometPoints[i - 1].position, _cometPoints[i].position, time / 5);
+                    if(_comet) {
+                        _comet.transform.position = _cometDummy.transform.position;
+                    }
                     if(i == _cometPoints.Count - 1) {
                         if (time == 0) {
                             _brokenSound.SetActive(true);
@@ -137,15 +146,15 @@ namespace Guardian {
             if(!player || !_plasmaWarp) {
                 return;
             }
-            if(Vector3.Distance(player.transform.position, _plasmaWarp.transform.position) < 200) {
+            if(Vector3.Distance(player.transform.position, _plasmaWarp.transform.position) < 250) {
                 if(SphereItem.PickedUpSphereItem) {
-                    if(TimeLoop.GetSecondsRemaining() < 180) {
-                        TimeLoop.SetSecondsRemaining(180);
+                    if(TimeLoop.GetSecondsRemaining() < 240) {
+                        TimeLoop.SetSecondsRemaining(240);
                     }
                 }
                 else {
-                    if(TimeLoop.GetSecondsRemaining() < 90) {
-                        TimeLoop.SetSecondsRemaining(90);
+                    if(TimeLoop.GetSecondsRemaining() < 180) {
+                        TimeLoop.SetSecondsRemaining(180);
                     }
                 }
                 _addTime = true;

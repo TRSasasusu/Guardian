@@ -33,13 +33,19 @@
     <ID>guardian_closed_path</ID>
     <Name>Closed Path</Name>
     <Curiosity>guardian_core</Curiosity>
+    <RumorFact>
+      <ID>guardian_closed_path_rumor</ID>
+      <SourceID>guardian_north</SourceID>
+      <Text>Floating structures can be seen in the distance.</Text>
+      <RumorName>Distant Structures</RumorName>
+    </RumorFact>
     <ExploreFact>
       <ID>guardian_north_memory_supernova</ID>
       <Text>I saw the spatial memory at a location where there was an enclosed structure directly above.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_north_memory_ss</ID>
-      <Text>By ignoring physics with spatial memories, I have seen memories within the enclosed structure.</Text>
+      <Text>I saw the spatial memory inside sealed structures, using spatial memories to defy physics, and even using a small portable energy sphere to power an imperfect plasma beam.</Text>
     </ExploreFact>
   </Entry>
 
@@ -149,8 +155,8 @@
     <Curiosity>guardian_core</Curiosity>
     <RumorFact>
       <ID>guardian_core_crush_rumor</ID>
-      <Text>Somewhere I heard the sound of Interloper crashing.</Text>
-      <RumorName>Interloper Crashing</RumorName>
+      <Text>A loud bang was heard, as if something had crashed somewhere.</Text>
+      <RumorName>Crashing</RumorName>
     </RumorFact>
     <RumorFact>
       <ID>guardian_core_crush_rumor_look</ID>
@@ -159,11 +165,11 @@
     </RumorFact>
     <ExploreFact>
       <ID>guardian_core_crush_interloper</ID>
-      <Text>Several platforms can be seen inside the narrow gap created when Interloper crashes into them.</Text>
+      <Text>The interloper had crashed into the huge structure, allowing me access inside.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_core_crush_fact</ID>
-      <Text>There is a plasma beam that does not have enough power. It seems that if I bring a small, handheld energy ball from somewhere, it will work.</Text>
+      <Text>Inside, I found an underpowered plasma beam.</Text>
     </ExploreFact>
   </Entry>
 
