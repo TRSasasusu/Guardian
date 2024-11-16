@@ -80,6 +80,7 @@ namespace Guardian {
                         }
                     }
                     _inactive = false;
+                    SphereItem.PickedUpSphereItem.Remove(gameObject.GetComponentInParent<Sector>());
                 }
                 else {
                     return;

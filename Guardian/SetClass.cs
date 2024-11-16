@@ -65,6 +65,7 @@ namespace Guardian {
         const string ROBOT_PATH = "Robot_Body";
         const string CORE_OUTSIDE_SURFACE_PATH = "SunCore_Body/Sector/SunOutsideSurface/notsmooth_sphere_inside";
         const string ENERGY_SPHERE_ITEM_PATH = "VolcanicMoon_Body/Sector_VM/robotonlantern Variant/HiddenObjs/smooth_sphere";
+        const string ENERGY_SPHERE_IN_CLOSED_PATH_PATH = "SunCore_Body/Sector/SunCoreStructure/ClosedPath/smooth_sphere";
         const string COMET_PATH = "Comet_Body";
         const string CORE_OF_CORE_PATH = "CoreofCore_Body/Sector/Star";
         const string REVEAL_CRUSH_INTERLOPER = "SunCore_Body/Sector/reveal_crushinterloper";
@@ -407,7 +408,7 @@ namespace Guardian {
                         closedPath.transform.Find("scaffold (11)").gameObject,
                         closedPath.transform.Find("scaffold (12)").gameObject,
                         closedPath.transform.Find("scaffold (13)").gameObject,
-                        closedPath.transform.Find("scaffold (14)").gameObject,
+                        //closedPath.transform.Find("scaffold (14)").gameObject,
                         closedPath.transform.Find("upper_block").gameObject,
                     };
                     break;
@@ -426,7 +427,9 @@ namespace Guardian {
                     memoryCoreObj.transform.Find("memory_space/audio_stabilizewithss").gameObject.SetActive(false);
                     memoryCoreObj.transform.Find("memory_space/reveal_memory").gameObject.SetActive(false);
                     memoryCore._disabledObjs = new List<GameObject> {
-                        closedPath.transform.Find("upper_block").gameObject,
+                        closedPath.transform.Find("cube_solidified (2)").gameObject,
+                        closedPath.transform.Find("scaffold (22)").gameObject,
+                        closedPath.transform.Find("scaffold (23)").gameObject,
                     };
                     break;
                 }
@@ -567,11 +570,19 @@ namespace Guardian {
             Guardian.Log("end: set memory core final th");
 
             Guardian.Log("start: set energy sphere item");
-            SphereItem energySphereItem;
+            //SphereItem energySphereItem;
             while(true) {
                 var energySphereObj = GameObject.Find(ENERGY_SPHERE_ITEM_PATH);
                 if(energySphereObj) {
-                    energySphereItem = energySphereObj.AddComponent<SphereItem>();
+                    energySphereObj.AddComponent<SphereItem>();
+                    break;
+                }
+                yield return null;
+            }
+            while(true) {
+                var energySphereObj = GameObject.Find(ENERGY_SPHERE_IN_CLOSED_PATH_PATH);
+                if(energySphereObj) {
+                    energySphereObj.AddComponent<SphereItem>();
                     break;
                 }
                 yield return null;
@@ -584,7 +595,6 @@ namespace Guardian {
                 if(coreCrush) {
                     var finalWarpController = coreCrush.AddComponent<FinalWarpController>();
                     finalWarpController._plasmaWarp = finalWarp;
-                    finalWarpController._sphereItem = energySphereItem;
                     while(true) {
                         var comet = GameObject.Find(COMET_PATH);
                         if(comet) {

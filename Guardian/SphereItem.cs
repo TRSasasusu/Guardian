@@ -30,6 +30,15 @@ namespace Guardian {
             PickedUpSphereItem = null;
         }
 
+        public void Remove(Sector sector) {
+            var itemTool = Locator.GetPlayerCamera().GetComponentInChildren<ItemTool>();
+            if(itemTool && itemTool.GetHeldItem() != null) {
+                itemTool._waitForUnsocketAnimation = false;
+                itemTool.DropItemInstantly(sector, transform);
+            }
+            Destroy(gameObject);
+        }
+
         void Update() {
             if(transform.parent && transform.parent.name == "ItemSocket") {
                 transform.localScale = Vector3.one * 0.2f;
