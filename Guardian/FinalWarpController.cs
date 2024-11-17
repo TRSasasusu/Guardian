@@ -82,9 +82,33 @@ namespace Guardian {
             if(_comet) {
                 //_comet.SetActive(false);
                 _comet.transform.position = _cometPoints[0].position;
+                var pye = _comet.transform.Find("DeadNomai_Body");
                 _cometDummy = _comet.transform.Find("Sector_CO").gameObject;
+                if(pye) {
+                    pye.transform.parent = _cometDummy.transform;
+                }
                 _cometDummy.transform.parent = transform;
                 _cometDummy.transform.localEulerAngles = new Vector3(316.0919f, 107.2167f, 180);
+                _cometDummy.transform.Find("Volumes_CO").gameObject.SetActive(false);
+                _cometDummy.transform.Find("Sector_CometInterior/Geometry_CometInterior/Terrain_CO_Interior_NotIce/BatchedGroup/BatchedMeshColliders_0").GetComponent<Collider>().enabled = true;
+                _cometDummy.transform.Find("Sector_CometInterior/Geometry_CometInterior/Terrain_CO_Interior_Ice/BatchedGroup/BatchedMeshColliders_0").GetComponent<Collider>().enabled = true;
+                _cometDummy.transform.Find("Sector_CometInterior/Volumes_CometInterior/ZeroG_Volume_Comet_Inside").GetComponent<ZeroGVolume>()._attachedBody = GetComponentInParent<OWRigidbody>();
+                _cometDummy.transform.Find("Sector_CometInterior/Volumes_CometInterior/ZeroG_Volume_Comet_Inside/EntrywayTrigger").GetComponent<Collider>().enabled = true;
+                _cometDummy.transform.Find("Sector_CometInterior/Volumes_CometInterior/ZeroG_Volume_Comet_Inside/EntrywayTrigger (1)").GetComponent<Collider>().enabled = true;
+                _cometDummy.transform.Find("Sector_CometInterior/Volumes_CometInterior/ZeroG_Volume_Comet_Inside/EntrywayTrigger (2)").GetComponent<Collider>().enabled = true;
+                if(pye) {
+                    foreach(var child in pye.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+                        child.enabled = true;
+                    }
+                    pye.Find("Prefab_NOM_Dead_Suit/Character_NOM_Dead_Suit/Nomai_Mesh:Mesh/Nomai_Mesh:Props_NOM_Mask_GearNew").gameObject.SetActive(true);
+                }
+                var poke = _cometDummy.transform.Find("Sector_CometInterior/Props_CometInterior/Prefab_NOM_Dead_Suit (1)/Character_NOM_Dead_Suit");
+                if(poke) {
+                    foreach(var child in poke.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+                        child.enabled = true;
+                    }
+                    poke.Find("Nomai_Mesh:Mesh/Nomai_Mesh:Props_NOM_Mask_GearNew").gameObject.SetActive(true);
+                }
             }
             _cometDummy.SetActive(true);
             _cometDummy.transform.position = _cometPoints[0].position;
