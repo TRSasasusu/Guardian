@@ -13,6 +13,7 @@ namespace Guardian {
         //public SphereItem _sphereItem;
         public GameObject _soundReveal;
         public GameObject _seeReveal;
+        public GameObject _finalWarpFoundReveal;
 
         GameObject _coverCollider;
         GameObject _cometDummy;
@@ -24,7 +25,8 @@ namespace Guardian {
         bool _addTime;
         bool _broken;
 
-        const float COMET_CRUSH_TIME = 180;//60 * 19 + 45;
+        //const float COMET_CRUSH_TIME = 180;
+        const float COMET_CRUSH_TIME = 60 * 19 + 45;
 
         public void Initialize() {
             //_coverBlock = transform.Find("Cube").gameObject;
@@ -126,7 +128,7 @@ namespace Guardian {
                         if (time == 0) {
                             _brokenSound.SetActive(true);
                             _soundReveal.SetActive(true);
-                            _seeReveal.SetActive(true);
+                            //_seeReveal.SetActive(true); // weirdly this causes reveal even in everywhere. i think it is caused by the interloper
                             _coverCollider.SetActive(false);
                             _broken = true;
                         }
@@ -167,10 +169,16 @@ namespace Guardian {
             if(!_broken) {
                 return;
             }
+            var player = Locator.GetPlayerBody();
+            if(player && _seeReveal && !_seeReveal.activeSelf && Vector3.Distance(player.transform.position, _seeReveal.transform.position) <= 200) {
+                _seeReveal.SetActive(true);
+            }
+            if(player && _finalWarpFoundReveal && !_finalWarpFoundReveal.activeSelf && Vector3.Distance(player.transform.position, _finalWarpFoundReveal.transform.position) <= 15) {
+                _finalWarpFoundReveal.SetActive(true);
+            }
             if(_addTime) {
                 return;
             }
-            var player = Locator.GetPlayerBody();
             if(!player || !_plasmaWarp) {
                 return;
             }

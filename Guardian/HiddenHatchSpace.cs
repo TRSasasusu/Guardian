@@ -12,6 +12,7 @@ namespace Guardian {
         public GameObject _outerSurface;
         public GameObject _coreSunGravityWell;
         public GameObject _geometrySun;
+        public GameObject _revealCoresun;
 
         //public void Initialize() {
         //    var rfVolumeObj = new GameObject("RFVolume");
@@ -43,6 +44,9 @@ namespace Guardian {
                 }
                 if(_geometrySun) {
                     _geometrySun.SetActive(false);
+                }
+                if(_revealCoresun) {
+                    _revealCoresun.SetActive(true);
                 }
 
                 //var shipBody = other.GetComponentInParent<ShipBody>();

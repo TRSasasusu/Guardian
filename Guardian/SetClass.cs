@@ -68,8 +68,10 @@ namespace Guardian {
         const string ENERGY_SPHERE_IN_CLOSED_PATH_PATH = "SunCore_Body/Sector/SunCoreStructure/ClosedPath/smooth_sphere";
         const string COMET_PATH = "Comet_Body";
         const string CORE_OF_CORE_PATH = "CoreofCore_Body/Sector/Star";
+        const string REVEAL_CORE_SUN = "SunCore_Body/Sector/reveal_coresun";
         const string REVEAL_CRUSH_INTERLOPER = "SunCore_Body/Sector/reveal_crushinterloper";
         const string REVEAL_LOW_CORE = "SunCore_Body/Sector/reveal_lowcore";
+        const string REVEAL_FINAL_WARP_FOUND = "SunCore_Body/Sector/SunCoreStructure/CoreCrush/PlasmaWarpFinal/reveal_final_warp_found";
         const string SHIPLOG_MAPMODE_CORE_RUN_PATH = "Ship_Body/Module_Cabin/Systems_Cabin/ShipLogPivot/ShipLog/ShipLogPivot/ShipLogCanvas/MapMode/ScaleRoot/PanRoot/Sun Core_ShipLog";
         const string SHIPLOG_ENTRY_HUD_MARKER_PATH = "Ship_Body/Module_Cabin/Systems_Cabin/ShipLogPivot/ShipLog/EntryHUDMarker";
 
@@ -241,6 +243,18 @@ namespace Guardian {
             GameObject closedPath = sunCoreStructure.transform.Find("ClosedPath").gameObject;
             Guardian.Log("end: find each area");
 
+            Guardian.Log("start: find reveal_coresun");
+            GameObject revealCoresun;
+            while(true) {
+                revealCoresun = GameObject.Find(REVEAL_CORE_SUN);
+                if(revealCoresun) {
+                    revealCoresun.SetActive(false);
+                    break;
+                }
+                yield return null;
+            }
+            Guardian.Log("end: find reveal_coresun");
+
             Guardian.Log("start: set warp 0");
             while(true) {
                 var warpObj = GameObject.Find(PLASMA_WARP_0_PATH);
@@ -257,7 +271,7 @@ namespace Guardian {
                             yield return null;
                         }
                     }
-                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio }, new GameObject[] { coreGravityWell });
+                    warp.Initialize(points, new int[] { 2 }, new GameObject[] { sunHeatVolume, sunInnerDestructionVolume, sunDestructionFluidVolume, sunGravityWell, sunAudio }, new GameObject[] { coreGravityWell, revealCoresun });
                     break;
                 }
                 yield return null;
@@ -615,6 +629,15 @@ namespace Guardian {
                         var reveal = GameObject.Find(REVEAL_LOW_CORE);
                         if(reveal) {
                             finalWarpController._seeReveal = reveal;
+                            break;
+                        }
+                        yield return null;
+                    }
+                    while(true) {
+                        var reveal = GameObject.Find(REVEAL_FINAL_WARP_FOUND);
+                        if(reveal) {
+                            reveal.SetActive(false);
+                            finalWarpController._finalWarpFoundReveal = reveal;
                             break;
                         }
                         yield return null;

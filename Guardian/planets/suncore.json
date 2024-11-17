@@ -294,8 +294,8 @@
       },
       {
         "audio": "planets/assets/BrokenSound.wav",
-        "track": "music",
-        "radius": 1500,
+        "track": "environment",
+        "radius": 1800,
         "volume": 1,
         "priority": 1,
         "parentPath": "Sector/SunCoreStructure",
