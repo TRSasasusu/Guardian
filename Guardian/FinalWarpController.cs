@@ -109,6 +109,10 @@ namespace Guardian {
                     }
                     poke.Find("Nomai_Mesh:Mesh/Nomai_Mesh:Props_NOM_Mask_GearNew").gameObject.SetActive(true);
                 }
+                var ambientLight = _comet.transform.Find("AmbientLight_CO");
+                if(ambientLight) {
+                    ambientLight.parent = _cometDummy.transform;
+                }
             }
             _cometDummy.SetActive(true);
             _cometDummy.transform.position = _cometPoints[0].position;

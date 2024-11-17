@@ -67,6 +67,20 @@
           "y": 0,
           "z": 0.6014
         }
+      },
+      {
+        "radius": 35,
+        "parentPath": "Sector/SunCoreStructure/WaitingArea/AirHole",
+        "isRelativeToParent": true,
+        "treeVolume": false,
+        "rename": "oxygen_waitingarea"
+      },
+      {
+        "radius": 40,
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/AirHole",
+        "isRelativeToParent": true,
+        "treeVolume": false,
+        "rename": "oxygen_closedpath"
       }
     ],
     "speedTrapVolumes": [
@@ -368,6 +382,11 @@
       },
       {
         "path": "CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Prefab_HEA_FuelTank",
+        "removeChildren": [
+          "Props_HEA_FuelTank"
+          //"Props_HEA_FuelTank_Collider",
+          //"Props_HEA_FuelTank_Geo"
+        ],
         "parentPath": "Sector/SunCoreStructure/EnergyStabilizer/scaffoldBrokenRobot",
         "isRelativeToParent": true,
         "position": {
@@ -376,6 +395,26 @@
           "z": 0.9027
         },
         "scale": 0.05
+      },
+      {
+        "path": "CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Prefab_HEA_FuelTank",
+        "removeChildren": [
+          "Props_HEA_FuelTank"
+          //"Props_HEA_FuelTank_Collider",
+          //"Props_HEA_FuelTank_Geo"
+        ],
+        "parentPath": "Sector/SunCoreStructure/WaitingArea/FuelHole Variant",
+        "isRelativeToParent": true
+      },
+      {
+        "path": "CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Prefab_HEA_FuelTank",
+        "removeChildren": [
+          "Props_HEA_FuelTank"
+          //"Props_HEA_FuelTank_Collider",
+          //"Props_HEA_FuelTank_Geo"
+        ],
+        "parentPath": "Sector/SunCoreStructure/ClosedPath/FuelHole Variant",
+        "isRelativeToParent": true
       },
       //{ // it weirdly opens some ship logs: reveal_coresun and reveal_lowcore
       //  "path": "Comet_Body/Sector_CO",
