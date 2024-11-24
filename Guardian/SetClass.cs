@@ -493,6 +493,7 @@ namespace Guardian {
                     hiddenHatchSpace._outerSurface = sunOutsideSurface;
                     hiddenHatchSpace._coreSunGravityWell = coreGravityWell;
                     hiddenHatchSpace._geometrySun = sunGeometry;
+                    hiddenHatchSpace._revealCoresun = revealCoresun;
                     break;
                 }
                 yield return null;
