@@ -21,7 +21,7 @@
     <Curiosity>guardian_core</Curiosity>
     <ExploreFact>
       <ID>guardian_north_fact</ID>
-      <Text>A structure that connects Sun Station to the plasma flame and the blue sun with plasma beams.</Text>
+      <Text>A structure that connects the Sun Station to the plasma flame and the blue sun with plasma beams.</Text>
     </ExploreFact>
     <ExploreFact>
       <ID>guardian_north_signal</ID>
