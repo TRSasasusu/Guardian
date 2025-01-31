@@ -57,7 +57,7 @@ namespace Guardian {
             if(_currentTimeReachingHatch >= _timeReachingHatch) {
                 _robotLocal.transform.parent = _coreSunSector;
                 _robotLocal.AddComponent<RobotLocal>()._points = new List<Transform> {
-                    _coreSunSector.Find("SunCoreStructure/WaitingArea/RobotMovePoint (4)"),
+                    //_coreSunSector.Find("SunCoreStructure/WaitingArea/RobotMovePoint (4)"),
                     _coreSunSector.Find("SunCoreStructure/WaitingArea/RobotMovePoint (3)"),
                     _coreSunSector.Find("SunCoreStructure/WaitingArea/RobotMovePoint (2)"),
                     _coreSunSector.Find("SunCoreStructure/WaitingArea/RobotMovePoint (1)"),
