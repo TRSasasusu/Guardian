@@ -32,16 +32,26 @@ namespace Guardian {
 
             _owRigidbody = GetComponent<OWRigidbody>();
             _rigidbody = GetComponent<Rigidbody>();
+
+            //Destroy(gameObject.GetComponent<CenterOfTheUniverseOffsetApplier>());
+            //gameObject.AddComponent<CenterOfTheUniverse>();
+
+            _owRigidbody._kinematicSimulation = false;
+            _rigidbody.isKinematic = false;
+            Destroy(_owRigidbody._kinematicRigidbody);
+
+            _owRigidbody.SetPosition(_dummyInitialPos.position);
+            transform.LookAt(_hatchCylinder);
         }
 
         void Update() {
             if(!_hatchCylinder) {
                 return;
             }
-            transform.LookAt(_hatchCylinder);
+            //transform.LookAt(_hatchCylinder);
             //transform.position += transform.forward * _speed * Time.deltaTime;
             _currentTimeReachingHatch += Time.deltaTime;
-            transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
+            //transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
             //_rigidbody.MovePosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
 
             if(_currentTimeReachingHatch >= _timeReachingHatch) {
@@ -58,23 +68,23 @@ namespace Guardian {
             }
         }
 
-        void LateUpdate() {
-            if(!_hatchCylinder) {
-                return;
-            }
-            transform.LookAt(_hatchCylinder);
-            transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
-        }
+        //void LateUpdate() {
+        //    if(!_hatchCylinder) {
+        //        return;
+        //    }
+        //    transform.LookAt(_hatchCylinder);
+        //    transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
+        //}
 
         void FixedUpdate() {
             if(!_hatchCylinder) {
                 return;
             }
-            transform.LookAt(_hatchCylinder);
-            transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
+            //transform.LookAt(_hatchCylinder);
+            //transform.position = Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1));
             //_owRigidbody.MoveToPosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
             //_rigidbody.MovePosition(Vector3.Lerp(_dummyInitialPos.position, _hatchCylinder.position, Mathf.Min(_currentTimeReachingHatch / _timeReachingHatch, 1)));
-            //_owRigidbody.SetVelocity((_hatchCylinder.position - _dummyInitialPos.position).normalized * (_initialDistance / _timeReachingHatch));
+            _owRigidbody.SetVelocity((_hatchCylinder.position - _dummyInitialPos.position).normalized * (_initialDistance / _timeReachingHatch));
         }
     }
 }
