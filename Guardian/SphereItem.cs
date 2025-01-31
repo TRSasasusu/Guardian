@@ -17,7 +17,7 @@ namespace Guardian {
         }
 
         public override string GetDisplayName() {
-            return "Energy Sphere";
+            return Guardian.newHorizons.GetTranslationForUI("Energy Sphere");
         }
 
         public override void PickUpItem(Transform holdTranform) {
